@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'Contador App';
   number: number = 10;
 
-  sumar(){ this.number++; }
-  restar(){ this.number--; }
+  base: number = 15;
+
+  changeNumber(value: number) { this.number += value; }
 }
