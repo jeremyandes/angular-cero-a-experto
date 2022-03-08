@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'contador-app';
+  title = 'Contador App';
+  number: number = 10;
+
+  sumar(){ this.number++; }
+  restar(){ this.number--; }
 }
