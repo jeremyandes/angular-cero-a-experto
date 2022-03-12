@@ -7,7 +7,7 @@ export class GifsService {
   private _history: string[] = [];
 
   constructor() {
-    console.log('GifsService constructor')
+    console.log('GifsService constructor');
   }
 
   get history() {
@@ -15,8 +15,12 @@ export class GifsService {
   }
 
   searchGifs(query: string) {
-    this._history.unshift(query);
+    query = query.trim().toLocaleLowerCase();
 
+    if (this._history.includes(query)) return;
+
+    this._history.unshift(query);
+    this._history = this._history.splice(0, 10);
     console.log(this._history);
   }
 }
