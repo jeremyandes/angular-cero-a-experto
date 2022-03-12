@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Gif, SearchGifsResponse } from '../interfaces/gifs.interface';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +16,12 @@ export class GifsService {
   private _history: string[] = [];
   public results: Gif[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private localStorageService: LocalStorageService) {
     console.log('GifsService constructor');
 
-    this._history = JSON.parse(localStorage.getItem('history')!) || [];
-    this.results = JSON.parse(localStorage.getItem('results')!) || [];
+    this._history = this.localStorageService.history;
+    this.results = this.localStorageService.results;
   }
 
   get history() {
@@ -33,16 +35,22 @@ export class GifsService {
       this._history.unshift(query);
       this._history = this._history.splice(0, 10);
 
-      localStorage.setItem('history', JSON.stringify(this._history));
+      this.localStorageService.setHistory(this._history);
     }
 
+    const params = new HttpParams()
+      .set('api_key', this.apiKey)
+      .set('limit', '100')
+      .set('q', query);
+
     const httpGet = this.http.get<SearchGifsResponse>(
-      `${this.protocol}://${this.baseURL}/${this.searchEndpoint}?api_key=${this.apiKey}&q=${query}&limit=10`
+      `${this.protocol}://${this.baseURL}/${this.searchEndpoint}`,
+      { params }
     );
 
     httpGet.subscribe((resp) => {
       this.results = resp.data;
-      localStorage.setItem('results', JSON.stringify(this.results));
+      this.localStorageService.setResults(this.results);
     });
   }
 }
