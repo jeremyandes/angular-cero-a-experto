@@ -5,9 +5,7 @@ import { Gif } from '../gifs/interfaces/gifs.interface';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  constructor() {
-    console.log('localStorage constructor');
-  }
+  constructor() {}
 
   get history() {
     return JSON.parse(localStorage.getItem('history')!) || [];

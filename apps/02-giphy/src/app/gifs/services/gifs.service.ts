@@ -18,7 +18,6 @@ export class GifsService {
 
   constructor(private http: HttpClient,
               private localStorageService: LocalStorageService) {
-    console.log('GifsService constructor');
 
     this._history = this.localStorageService.history;
     this.results = this.localStorageService.results;
@@ -40,7 +39,7 @@ export class GifsService {
 
     const params = new HttpParams()
       .set('api_key', this.apiKey)
-      .set('limit', '100')
+      .set('limit', '10')
       .set('q', query);
 
     const httpGet = this.http.get<SearchGifsResponse>(
