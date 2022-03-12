@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Gif, SearchGifsResponse } from '../interfaces/gifs.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +8,11 @@ import { Injectable } from '@angular/core';
 export class GifsService {
   private _history: string[] = [];
   private apiKey: string = 'h0lXkO2rN89vY3PLpQp23Se8J0su2WsP';
-  private searchEndpoint: string = 'api.giphy.com/v1/gifs/search';
+  private protocol: string = 'https';
+  private baseURL: string = 'api.giphy.com/v1/gifs';
+  private searchEndpoint: string = 'search';
 
-  public results: any[] = [];
+  public results: Gif[] = [];
 
   constructor(private http: HttpClient) {
     console.log('GifsService constructor');
@@ -27,9 +30,12 @@ export class GifsService {
     this._history.unshift(query);
     this._history = this._history.splice(0, 10);
 
-    const httpGet = this.http.get(
-      `https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${query}&limit=10`
+    const httpGet = this.http.get<SearchGifsResponse>(
+      `${this.protocol}://${this.baseURL}/${this.searchEndpoint}?api_key=${this.apiKey}&q=${query}&limit=10`
     );
-    httpGet.subscribe((resp: any) => { this.results = resp.data; console.log(this.results) });
+    httpGet.subscribe((resp) => {
+      this.results = resp.data;
+      console.log(this.results);
+    });
   }
 }
