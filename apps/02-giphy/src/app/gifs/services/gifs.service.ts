@@ -13,13 +13,13 @@ export class GifsService {
   private searchEndpoint: string = 'search';
 
   private _history: string[] = [];
-
   public results: Gif[] = [];
 
   constructor(private http: HttpClient) {
     console.log('GifsService constructor');
 
     this._history = JSON.parse(localStorage.getItem('history')!) || [];
+    this.results = JSON.parse(localStorage.getItem('results')!) || [];
   }
 
   get history() {
@@ -29,12 +29,12 @@ export class GifsService {
   searchGifs(query: string) {
     query = query.trim().toLocaleLowerCase();
 
-    if (this._history.includes(query)) return;
+    if (!this._history.includes(query)) {
+      this._history.unshift(query);
+      this._history = this._history.splice(0, 10);
 
-    this._history.unshift(query);
-    this._history = this._history.splice(0, 10);
-
-    localStorage.setItem('history', JSON.stringify(this._history));
+      localStorage.setItem('history', JSON.stringify(this._history));
+    }
 
     const httpGet = this.http.get<SearchGifsResponse>(
       `${this.protocol}://${this.baseURL}/${this.searchEndpoint}?api_key=${this.apiKey}&q=${query}&limit=10`
@@ -42,7 +42,7 @@ export class GifsService {
 
     httpGet.subscribe((resp) => {
       this.results = resp.data;
-      console.log(this.results);
+      localStorage.setItem('results', JSON.stringify(this.results));
     });
   }
 }
