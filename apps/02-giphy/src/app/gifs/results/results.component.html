@@ -1,7 +1,19 @@
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi rem autem eaque, soluta totam
-    nam
-    facere in dolore saepe perferendis dolor similique voluptatibus voluptatem! Saepe architecto sapiente
-    eveniet
-    laudantium quis recusandae placeat vero quasi vel deserunt nisi, autem atque ab est, magnam,
-    reprehenderit
-    repellendus tempora quidem delectus molestias eligendi.</p>
+<!-- <ul>
+    <li *ngFor="let gif of results">
+        {{ gif.title }}
+    </li>
+</ul> -->
+
+
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-4" *ngFor="let gif of results">
+        <div class="card my-3">
+            <img [src]="gif.images.downsized_medium.url" [alt]="gif.title" class="card-img-top">
+            <div class="card-body">
+                <p class="card-text">
+                    {{ gif.title }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

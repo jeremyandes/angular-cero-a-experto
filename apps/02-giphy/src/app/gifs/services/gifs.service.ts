@@ -9,6 +9,8 @@ export class GifsService {
   private apiKey: string = 'h0lXkO2rN89vY3PLpQp23Se8J0su2WsP';
   private searchEndpoint: string = 'api.giphy.com/v1/gifs/search';
 
+  public results: any[] = [];
+
   constructor(private http: HttpClient) {
     console.log('GifsService constructor');
   }
@@ -28,6 +30,6 @@ export class GifsService {
     const httpGet = this.http.get(
       `https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${query}&limit=10`
     );
-    httpGet.subscribe((resp: any) => console.log(resp.data));
+    httpGet.subscribe((resp: any) => { this.results = resp.data; console.log(this.results) });
   }
 }
