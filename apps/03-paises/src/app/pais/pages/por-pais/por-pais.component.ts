@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PaisService } from '../../services/pais.service';
 
 @Component({
   selector: 'app-por-pais',
@@ -6,11 +7,13 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class PorPaisComponent {
-  pais: string = 'Hola mundo';
+  pais: string = 'Argentina';
 
-  constructor() {}
+  constructor(private paisService: PaisService) {}
 
   buscar() {
-    console.log(this.pais);
+    this.paisService
+      .buscarPais(this.pais)
+      .subscribe((resp) => console.log(resp));
   }
 }
