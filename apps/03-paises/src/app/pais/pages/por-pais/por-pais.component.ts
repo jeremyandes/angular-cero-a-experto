@@ -15,12 +15,15 @@ export class PorPaisComponent {
 
   constructor(private paisService: PaisService) {}
 
-  buscar() {
+  buscar(value: string) {
     this.error = false;
+    this.inputPais = value;
+    console.log(this.inputPais);
+
     this.paisService.buscarPais(this.inputPais).subscribe({
       next: (paises) => {
         this.paises = paises;
-        console.log(this.paises)
+        console.log(this.paises);
       },
       error: (err) => {
         console.info(err);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pais-input',
@@ -6,9 +6,13 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class PaisInputComponent {
+  @Output() onKeyEnter: EventEmitter<string> = new EventEmitter();
+
   inputPais: string = '';
 
   constructor() {}
 
-  buscar() {}
+  buscar() {
+    this.onKeyEnter.emit(this.inputPais);
+  }
 }
