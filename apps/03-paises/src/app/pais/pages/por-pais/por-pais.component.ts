@@ -7,13 +7,22 @@ import { PaisService } from '../../services/pais.service';
   styles: [],
 })
 export class PorPaisComponent {
-  pais: string = 'Argentina';
+  pais: string = '';
+  error: boolean = false;
 
   constructor(private paisService: PaisService) {}
 
   buscar() {
-    this.paisService
-      .buscarPais(this.pais)
-      .subscribe((resp) => console.log(resp));
+    this.error = false;
+    this.paisService.buscarPais(this.pais).subscribe({
+      next: (resp) => {
+        console.log(resp);
+      },
+      error: (err) => {
+        console.info(err);
+        this.error = true;
+      },
+      complete: () => console.info('paisService.buscarPais => Complete'),
+    });
   }
 }

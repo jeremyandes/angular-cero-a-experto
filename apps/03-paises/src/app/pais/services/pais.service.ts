@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class PaisService {
   private baseUrl: string = 'https://restcountries.com/v3.1';
-  private endpointName: string = 'name';
+  private endpointPais: string = 'name';
 
   constructor(private http: HttpClient) {}
 
   buscarPais(value: string): Observable<any> {
-    const url = `${this.baseUrl}/${this.endpointName}/argentina`;
+    const url = `${this.baseUrl}/${this.endpointPais}/${value}`;
     return this.http.get(url);
   }
 }
