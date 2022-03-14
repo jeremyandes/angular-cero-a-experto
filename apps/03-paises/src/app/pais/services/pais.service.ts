@@ -10,6 +10,7 @@ export class PaisService {
   private baseUrl: string = 'https://restcountries.com/v3.1';
   private endpointPais: string = 'name';
   private endpointCapital: string = 'capital';
+  private endpointAlpha: string = 'alpha';
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +22,10 @@ export class PaisService {
   buscarCapital(value: string): Observable<Pais[]> {
     const url = `${this.baseUrl}/${this.endpointCapital}/${value}`;
     return this.http.get<Pais[]>(url);
+  }
+
+  buscarPorAlpha(value: string): Observable<Pais> {
+    const url = `${this.baseUrl}/${this.endpointAlpha}/${value}`;
+    return this.http.get<Pais>(url);
   }
 }
