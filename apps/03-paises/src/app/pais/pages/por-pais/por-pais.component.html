@@ -3,14 +3,14 @@
 
 <div class="row">
     <div class="col">
-        <app-pais-input (onKeyEnter)="buscar($event)" (onDebounce)="sugerencias($event)"></app-pais-input>
+        <app-pais-input (onKeyEnter)="buscar($event)" (onDebounce)="sugerencias($event)" placeholder="Buscar por país..."></app-pais-input>
     </div>
 </div>
 
 <hr>
 
 <div class="alert alert-danger" *ngIf="error">
-    No existen resultados del país [...]
+    No existen resultados del país {{ inputPais }}
 </div>
 
 <div class="row" *ngIf="paises.length > 0">
