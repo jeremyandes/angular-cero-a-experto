@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-4">
                 <h3>Bandera</h3>
-                <img [src]="resp.flags.png" [alt]="resp.name.common" width="40">
+                <img [src]="resp.flags.png" [alt]="resp.name.common" class="img-thumbnail">
             </div>
             <div class="col">
                 <h3>Información</h3>
@@ -19,8 +19,44 @@
                     <li class="list-group-item">
                         <strong>Población</strong> {{ resp.population | number }}
                     </li>
+                    <li class="list-group-item">
+                        <strong>Código Alpha3</strong> {{ resp.cca3 }}
+                    </li>
                 </ul>
             </div>
         </div>
+
+        <h3 class="mt-5">Traducciones</h3>
+        <div class="row">
+            <div class="col">
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['ara'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['ces'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['cym'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['deu'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['est'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['fin'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['fra'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['hrv'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['hun'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['ita'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['jpn'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['kor'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['nld'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['per'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['pol'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['por'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['rus'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['slk'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['spa'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['swe'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['urd'].official }}</span>
+                <span class="badge bg-primary m-1 p-2">{{ resp.translations['zho'].official }}</span>
+            </div>
+        </div>
+
+        <h3 class="mt-5">JSON</h3>
+        <pre class="mt-2">
+            {{ resp | json }}
+        </pre>
     </section>
 </ng-template>
