@@ -32,4 +32,9 @@ export class PorPaisComponent {
       complete: () => console.info('paisService.buscarPais => Complete'),
     });
   }
+
+  sugerencias(value: string){
+    this.error = false;
+    // TODO: Crear sugerencias
+  }
 }
