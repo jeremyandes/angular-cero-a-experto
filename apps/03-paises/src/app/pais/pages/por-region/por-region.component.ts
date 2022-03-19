@@ -19,6 +19,12 @@ export class PorRegionComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  getClaseCSS(region: string) {
+    return this.regionActiva === region
+      ? 'btn-dark'
+      : 'btn-outline-dark';
+  }
+
   activarRegion(region: string) {
     if (this.regionActiva === region) return;
     this.regionActiva = region;

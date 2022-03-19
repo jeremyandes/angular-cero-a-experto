@@ -7,6 +7,8 @@
     <div class="col">
         <!-- [class.btn-dark]="region === regionActiva" -->
         <!-- [ngClass]="{'btn-dark': regionActiva === region, 'btn-outline-dark': regionActiva !== region}" -->
-        <button *ngFor="let region of regiones" class="btn btn-outline-dark" (click)="activarRegion(region)">{{ region }}</button>
+        <!-- [class]="region === regionActiva ? 'btn btn-dark' : 'btn btn-outline-dark'" -->
+        <button *ngFor="let region of regiones" class="btn" [class]="getClaseCSS(region)"
+            (click)="activarRegion(region)">{{ region | titlecase }}</button>
     </div>
 </div>
