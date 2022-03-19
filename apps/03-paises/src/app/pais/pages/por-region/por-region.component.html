@@ -9,6 +9,18 @@
         <!-- [ngClass]="{'btn-dark': regionActiva === region, 'btn-outline-dark': regionActiva !== region}" -->
         <!-- [class]="region === regionActiva ? 'btn btn-dark' : 'btn btn-outline-dark'" -->
         <button *ngFor="let region of regiones" class="btn" [class]="getClaseCSS(region)"
-            (click)="activarRegion(region)">{{ region | titlecase }}</button>
+            (click)="activarRegion(region);">{{ region | titlecase }}</button>
+    </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="error">
+    No existen resultados de la región {{ regionActiva }}
+</div>
+
+<hr>
+
+<div class="row" *ngIf="paises.length > 0">
+    <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
     </div>
 </div>

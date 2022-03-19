@@ -11,6 +11,7 @@ export class PaisService {
   private endpointPais: string = 'name';
   private endpointCapital: string = 'capital';
   private endpointCodigo: string = 'alpha';
+  private endpointRegion: string = 'region';
 
   constructor(private http: HttpClient) {}
 
@@ -27,5 +28,10 @@ export class PaisService {
   buscarPorCodigo(value: string): Observable<Pais> {
     const url = `${this.baseUrl}/${this.endpointCodigo}/${value}`;
     return this.http.get<Pais>(url);
+  }
+
+  buscarPorRegion(region: string): Observable<Pais[]> {
+    const url = `${this.baseUrl}/${this.endpointRegion}/${region}`;
+    return this.http.get<Pais[]>(url);
   }
 }
