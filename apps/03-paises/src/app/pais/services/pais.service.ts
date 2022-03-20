@@ -15,7 +15,7 @@ export class PaisService {
 
   private httpParams: HttpParams = new HttpParams().set(
     'fields',
-    'name,capital,cca3,flags,population,translations'
+    'name,capital,cca2,cca3,flags,population,translations'
   );
 
   constructor(private http: HttpClient) {}
