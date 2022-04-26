@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+    background-color: var(--surface-b);
+    font-family: var(--font-family);
+}
+
+.text-layout {
+    color: var(--text-color);
+}
