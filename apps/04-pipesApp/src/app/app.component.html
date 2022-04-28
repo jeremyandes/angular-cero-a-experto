@@ -4,4 +4,18 @@
     <h2>{{ obj | json }}</h2>
 </section>
 
-<button pButton type="button" (click)="mostrar()" label="Mostrar"></button>
+<button pButton type="button"
+    (click)="mostrar()"
+    label="Apple"
+    class="p-button-lg p-button-raised p-button-rounded p-button-help p-button-outlined"
+    icon="pi pi-apple"
+    iconPos="right"></button>
+
+<p-card>
+    <ng-template pTemplate="title">
+        Title
+    </ng-template>
+    <ng-template pTemplate="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam consequatur animi voluptatum vel nobis alias et accusamus porro dolorum consequuntur error laborum ullam ad ducimus soluta, nihil dolorem numquam inventore sequi molestiae quis fugit totam. Quaerat minima cupiditate ipsa aperiam neque possimus laudantium et obcaecati odit, voluptate accusamus dolorum eveniet?
+    </ng-template>
+</p-card>
