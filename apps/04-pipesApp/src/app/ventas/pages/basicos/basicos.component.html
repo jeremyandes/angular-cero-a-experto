@@ -4,14 +4,23 @@
 </div>
 
 
-<div class="grid text-layout">
+<div class="grid text-layout w-full">
     <div class="col-12 md:col-4">
-        <p-card>1</p-card>
+        <p-card header="UpperCase"
+                [subheader]="nombreLowerCase">
+            {{ nombreLowerCase | uppercase }}
+        </p-card>
     </div>
     <div class="col-12 md:col-4">
-        <p-card>2</p-card>
+        <p-card header="LowerCase"
+                [subheader]="nombreUpperCase">
+            {{ nombreUpperCase | lowercase }}
+        </p-card>
     </div>
     <div class="col-12 md:col-4">
-        <p-card>3</p-card>
+        <p-card header="TitleCase"
+                [subheader]="nombreCompleto">
+            {{ nombreCompleto | titlecase }}
+        </p-card>
     </div>
 </div>
