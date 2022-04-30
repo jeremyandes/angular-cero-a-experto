@@ -1,6 +1,6 @@
 <div class="text-layout">
     <h1>Pipes Básicos</h1>
-    <p>Pipes incluídos con Angular - Usualmente en el <code>Common Module</code></p>
+    <p>Pipes incluídos con Angular - Usualmente en el <code>Common Module</code>.</p>
 </div>
 
 
@@ -21,6 +21,36 @@
         <p-card header="TitleCase"
                 [subheader]="nombreCompleto">
             {{ nombreCompleto | titlecase }}
+        </p-card>
+    </div>
+</div>
+
+<div class="text-layout">
+    <h1>Date | Fecha | Pipe</h1>
+    <p>Pipe para mostrar las fechas.</p>
+</div>
+
+<div class="grid text-layout w-full">
+    <div class="col-12 md:col-4">
+        <p-card>
+            <ul>
+                <li class="py-1">Fecha</li>
+                <li class="py-1">Fecha | date</li>
+                <li class="py-1">Fecha | date:'short'</li>
+                <li class="py-1">Fecha | date:'long'</li>
+                <li class="py-1">Fecha | date:'dd/MM/YYYY'</li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-8">
+        <p-card>
+            <ul>
+                <li class="py-1">{{ fecha }}</li>
+                <li class="py-1">{{ fecha | date }}</li>
+                <li class="py-1">{{ fecha | date:'short' }}</li>
+                <li class="py-1">{{ fecha | date:'long' }}</li>
+                <li class="py-1">{{ fecha | date:'dd/MM/YYYY' }}</li>
+            </ul>
         </p-card>
     </div>
 </div>

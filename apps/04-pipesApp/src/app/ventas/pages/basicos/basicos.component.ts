@@ -12,6 +12,8 @@ export class BasicosComponent implements OnInit {
   nombreUpperCase: string = 'JEREMY';
   nombreCompleto: string = 'jErEmY aNdEs';
 
+  fecha: Date = new Date();
+
   constructor() { }
 
   ngOnInit(): void {
