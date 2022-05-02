@@ -7,20 +7,20 @@
 <div class="grid text-layout w-full">
     <div class="col-12 md:col-4">
         <p-card header="UpperCase"
-                [subheader]="nombreLowerCase">
-            {{ nombreLowerCase | uppercase }}
+                [subheader]="'Original: ' + nombreLowerCase">
+            Resultado: {{ nombreLowerCase | uppercase }}
         </p-card>
     </div>
     <div class="col-12 md:col-4">
         <p-card header="LowerCase"
-                [subheader]="nombreUpperCase">
-            {{ nombreUpperCase | lowercase }}
+                [subheader]="'Original: ' + nombreUpperCase">
+            Resultado: {{ nombreUpperCase | lowercase }}
         </p-card>
     </div>
     <div class="col-12 md:col-4">
         <p-card header="TitleCase"
-                [subheader]="nombreCompleto">
-            {{ nombreCompleto | titlecase }}
+                [subheader]="'Original: ' + nombreCompleto">
+            Resultado: {{ nombreCompleto | titlecase }}
         </p-card>
     </div>
 </div>
@@ -40,6 +40,14 @@
                 <li class="py-1">Fecha | date:'long'</li>
                 <li class="py-1">Fecha | date:'dd/MM/YYYY'</li>
             </ul>
+
+            <hr>
+
+            <ul>
+                <li class="py-1">Fecha | date:'long':'GMT-3'</li>
+                <li class="py-1">Fecha | date:'long':'GMT-4'</li>
+                <li class="py-1">Fecha | date:'long':'GMT-5'</li>
+            </ul>
         </p-card>
     </div>
     <div class="col-12 md:col-8">
@@ -50,6 +58,14 @@
                 <li class="py-1">{{ fecha | date:'short' }}</li>
                 <li class="py-1">{{ fecha | date:'long' }}</li>
                 <li class="py-1">{{ fecha | date:'dd/MM/YYYY' }}</li>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li class="py-1">{{ fecha | date:'long':'GMT-3' }}</li>
+                <li class="py-1">{{ fecha | date:'long':'GMT-4' }}</li>
+                <li class="py-1">{{ fecha | date:'long':'GMT-5' }}</li>
             </ul>
         </p-card>
     </div>
