@@ -1,6 +1,7 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { VentasModule } from './ventas/ventas.module';
 
@@ -11,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import localeEs from '@angular/common/locales/es-AR';
 import { registerLocaleData } from '@angular/common';
 
-registerLocaleData( localeEs ); 
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -19,9 +20,10 @@ registerLocaleData( localeEs );
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    VentasModule
+    VentasModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-AR' }
