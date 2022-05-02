@@ -30,4 +30,46 @@
             </ul>
         </p-card>
     </div>
+    <div class="col-12 md:col-4">
+        <p-card header="Ventas Brutas" subheader="Pipes">
+            <ul>
+                <li>
+                    <span>ventasNetas + 1500000 | currency:'ARS'</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-8">
+        <p-card header="Ventas Brutas" subheader="Resultado">
+            <ul>
+                <li>
+                    <span>{{ ventasNetas + 1500000 | currency:'ARS':'symbol-narrow':'1.0-4' }}</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-4">
+        <p-card header="Porcentaje de Ganancias" subheader="Pipes">
+            <ul>
+                <li>
+                    <span>porcentaje | percent</span>
+                </li>
+                <li>
+                    <span>porcentaje | percent:'2.2-2'</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-8">
+        <p-card header="Porcentaje de Ganancias" subheader="Resultado">
+            <ul>
+                <li>
+                    <span>{{ porcentaje | percent }}</span>
+                </li>
+                <li>
+                    <span>{{ porcentaje | percent:'2.2-2' }}</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
 </div>
