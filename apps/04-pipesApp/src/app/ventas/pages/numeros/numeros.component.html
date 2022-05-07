@@ -1,0 +1,75 @@
+<div class="text-layout">
+    <h1>DecimalPipe y Porcentaje</h1>
+    <p>Pipes incluídos en Angular - usualmente en el <code>Common Module</code>.</p>
+</div>
+
+<div class="grid text-layout w-full">
+    <div class="col-12 md:col-6">
+        <p-card header="Ventas Netas" subheader="Pipes">
+            <ul>
+                <li class="py-1">
+                    <span>ventasNetas | number</span>
+                </li>
+                <li class="py-1">
+                    <span>ventasNetas | number:'1.2-2'</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-6">
+        <p-card header="Ventas Netas" subheader="Resultado">
+            <ul>
+                <li class="py-1">
+                    <i class="pi pi-dollar"></i>
+                    <span>{{ ventasNetas | number }}</span>
+                </li>
+                <li class="py-1">
+                    <i class="pi pi-dollar"></i>
+                    <span>{{ ventasNetas | number:'1.2-2' }}</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-6">
+        <p-card header="Ventas Brutas" subheader="Pipes">
+            <ul>
+                <li class="py-1">
+                    <span>ventasNetas + 1500000 | currency:'ARS'</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-6">
+        <p-card header="Ventas Brutas" subheader="Resultado">
+            <ul>
+                <li class="py-1">
+                    <span>{{ ventasNetas + 1500000 | currency:'ARS':'symbol-narrow':'1.0-4' }}</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-6">
+        <p-card header="Porcentaje" subheader="Pipes">
+            <ul>
+                <li class="py-1">
+                    <span>porcentaje | percent</span>
+                </li>
+                <li class="py-1">
+                    <span>porcentaje | percent:'2.2-2'</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-6">
+        <p-card header="Porcentaje" subheader="Resultado">
+            <ul>
+                <li class="py-1">
+                    <span>{{ porcentaje | percent }}</span>
+                </li>
+                <li class="py-1">
+                    <span>{{ porcentaje | percent:'2.2-2' }}</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+</div>
