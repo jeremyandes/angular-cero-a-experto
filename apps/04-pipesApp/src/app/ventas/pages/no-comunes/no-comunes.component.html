@@ -6,7 +6,7 @@
 <div class="grid">
     <div class="col-12 md:col-6">
         <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
-            <div class="flex flex-column">
+            <div class="flex flex-column w-full">
                 <span>Hola {{ nombre }},
                     {{ genero | i18nSelect:selectMap }}
                     al sitio web!</span>
@@ -17,16 +17,18 @@
     </div>
     <div class="col-12 md:col-6">
         <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
-            <div class="flex flex-column">
+            <div class="flex flex-column w-full">
                 <span>
                     Actualmente {{ clientes.length | i18nPlural:clientesMap }}.
                 </span>
                 <div class="grid">
                     <div class="col-12 md:col-6">
-                        <button pButton type="button" label="Agregar cliente" class="p-button-help my-3 w-full" (click)="agregarcliente()"></button>
+                        <button pButton type="button" label="Agregar cliente" class="p-button-help my-3 w-full"
+                            (click)="agregarcliente()"></button>
                     </div>
                     <div class="col-12 md:col-6">
-                        <button pButton type="button" label="Borrar cliente" class="p-button-danger my-3 w-full" (click)="borrarCliente()"></button>
+                        <button pButton type="button" label="Borrar cliente" class="p-button-danger my-3 w-full"
+                            (click)="borrarCliente()"></button>
                     </div>
                 </div>
             </div>
@@ -46,6 +48,18 @@
 
                 <b>slice:2:4</b>
                 <pre class="flex flex-wrap pb-3">{{ clientes | slice:2:4 }}</pre>
+            </div>
+        </p-fieldset>
+    </div>
+    <div class="col-12 md:col-6">
+        <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+            <div class="flex flex-column w-full">
+                <ul>
+                    <li *ngFor="let item of persona | keyvalue">
+                        <b>{{ item.key | titlecase }}:</b>
+                        <span class="pl-2">{{ item.value }}</span>
+                    </li>
+                </ul>
             </div>
         </p-fieldset>
     </div>

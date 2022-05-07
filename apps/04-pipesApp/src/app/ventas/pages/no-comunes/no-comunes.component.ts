@@ -23,6 +23,12 @@ export class NoComunesComponent {
     'other': `tenemos ${this.clientes.length} clientes esperando`,
   }
 
+  persona = {
+    nombre: 'Jeremy',
+    edad: 23,
+    localidad: 'Mar del Plata, Argentina'
+  }
+
   public cambiarGenero(): void {
     if (this.genero == 'male') {
       this.nombre = 'Camila'
