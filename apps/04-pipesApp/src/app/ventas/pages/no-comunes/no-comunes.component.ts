@@ -24,9 +24,13 @@ export class NoComunesComponent {
   }
 
   public cambiarGenero(): void {
-    this.genero == 'male'
-      ? this.genero = 'female'
-      : this.genero = 'male'
+    if (this.genero == 'male') {
+      this.nombre = 'Camila'
+      this.genero = 'female';
+    } else {
+      this.nombre = 'Jeremy';
+      this.genero = 'male';
+    }
   }
 
   public agregarcliente(): void {
