@@ -16,7 +16,7 @@ export class NoComunesComponent {
     'female': 'bienvenida',
   }
 
-  clientes: string[] = [];
+  clientes: string[] = ['Laura', 'Pedro', 'Juan', 'Juana', 'Jeremy', 'Camila', 'Thiago'];
   clientesMap = {
     '=0': 'no tenemos clientes esperando',
     '=1': 'tenemos 1 cliente esperando',
@@ -35,6 +35,9 @@ export class NoComunesComponent {
 
   public agregarcliente(): void {
     this.clientes.push(`Cliente ${this.clientes.length + 1}`);
+  }
+  public borrarCliente(): void {
+    this.clientes.pop();
   }
 
 }
