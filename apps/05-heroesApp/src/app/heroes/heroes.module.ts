@@ -10,6 +10,7 @@ import { ListComponent } from './pages/list/list.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { SearchComponent } from './pages/search/search.component';
 import { HeroeCardComponent } from './components/heroe-card/heroe-card.component';
+import { HeroeImagePipe } from './pipes/heroe-image.pipe';
 
 
 
@@ -20,7 +21,8 @@ import { HeroeCardComponent } from './components/heroe-card/heroe-card.component
     HeroeComponent,
     HomeComponent,
     ListComponent,
-    HeroeCardComponent
+    HeroeCardComponent,
+    HeroeImagePipe
   ],
   imports: [
     CommonModule,
