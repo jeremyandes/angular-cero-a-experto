@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { SearchComponent } from './pages/search/search.component';
+import { HeroeCardComponent } from './components/heroe-card/heroe-card.component';
 
 
 
@@ -18,7 +19,8 @@ import { SearchComponent } from './pages/search/search.component';
     SearchComponent,
     HeroeComponent,
     HomeComponent,
-    ListComponent
+    ListComponent,
+    HeroeCardComponent
   ],
   imports: [
     CommonModule,
