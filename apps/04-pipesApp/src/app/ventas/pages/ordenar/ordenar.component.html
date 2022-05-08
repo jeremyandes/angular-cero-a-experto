@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-12">
-        <p-table [value]="heroes" responsiveLayout="scroll">
+        <p-table [value]="heroes | ordenar" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Nombre</th>
