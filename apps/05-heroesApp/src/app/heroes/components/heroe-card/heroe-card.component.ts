@@ -16,7 +16,7 @@ export class HeroeCardComponent {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.heroe);
+    // console.log(this.heroe);
   }
 
 }
