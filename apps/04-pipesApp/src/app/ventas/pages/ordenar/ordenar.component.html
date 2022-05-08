@@ -14,15 +14,15 @@
                 <button pButton type="button" label="Mayúsculas Toggle" class="px-3 mx-1"
                     (click)="mayusculasToggle()"></button>
 
-                <button pButton icon="pi pi-sort" label="Por nombre" class="px-3 mx-1 p-button-warning"></button>
-                <button pButton icon="pi pi-sort" label="Valores" class="px-3 mx-1 p-button-success"></button>
-                <button pButton icon="pi pi-sort" label="Valores" class="px-3 mx-1 p-button-help"></button>
+                <button (click)="ordenarPor('nombre')" pButton icon="pi pi-sort" label="Por nombre" class="px-3 mx-1 p-button-warning"></button>
+                <button (click)="ordenarPor('vuela')" pButton icon="pi pi-sort" label="Vuela" class="px-3 mx-1 p-button-success"></button>
+                <button (click)="ordenarPor('color')" pButton icon="pi pi-sort" label="Por color" class="px-3 mx-1 p-button-help"></button>
             </div>
         </p-toolbar>
     </div>
 
     <div class="col-12">
-        <p-table [value]="heroes | ordenar" responsiveLayout="scroll">
+        <p-table [value]="heroes | ordenar:ordenActual:reversed" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Nombre</th>

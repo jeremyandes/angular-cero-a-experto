@@ -35,10 +35,20 @@ export class OrdenarComponent {
       vuela: true,
       color: Color.verde
     },
-  ]
+  ];
+  ordenActual: string = 'nombre';
+  reversed: boolean = false;
 
   mayusculasToggle() {
     this.toggle = this.toggle ? false : true;
+  }
+  ordenarPor(value: string) {
+    if(value != this.ordenActual) {
+      this.reversed = false;
+      this.ordenActual = value;
+    }else{
+      this.reversed = !this.reversed;
+    }
   }
 
 }
