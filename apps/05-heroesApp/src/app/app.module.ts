@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+
 import { NotFoundComponent } from './shared/error/not-found/not-found.component';
 
 @NgModule({
@@ -11,8 +13,9 @@ import { NotFoundComponent } from './shared/error/not-found/not-found.component'
     NotFoundComponent
   ],
   imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
     BrowserModule,
-    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
