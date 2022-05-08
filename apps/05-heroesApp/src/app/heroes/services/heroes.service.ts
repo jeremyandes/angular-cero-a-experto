@@ -11,11 +11,14 @@ export class HeroesService {
 
     constructor(private http: HttpClient) { }
 
-    public getUsers(): Observable<Heroe[]> {
-        return this.http.get<Heroe[]>(`${this.url}/users`);
+    public getUsers(): Observable<object> {
+        return this.http.get<object>(`${this.url}/users`);
     }
-    public getHeroes(): Observable<object> {
-        return this.http.get(`${this.url}/heroes`);
+    public getHeroes(): Observable<Heroe[]> {
+        return this.http.get<Heroe[]>(`${this.url}/heroes`);
+    }
+    public getHeroe(id: string): Observable<object> {
+        return this.http.get(`${this.url}/heroes/${id}`);
     }
 
 }
