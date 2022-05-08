@@ -1,1 +1,7 @@
-<p>ordenar works!</p>
+<div class="text-layout">
+    <h1>Pipes Personalizados</h1>
+    <p>{{ 'Pipes creados por mí' | mayusculas }}</p>
+    <p>{{ 'Pipes creados por mí, con toggle' | mayusculas: toggle }}</p>
+
+    <button pButton type="button" label="Mayúsculas Toggle" class="my-3" (click)="mayusculasToggle()"></button>
+</div>
