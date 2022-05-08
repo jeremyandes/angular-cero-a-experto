@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { NgModule } from '@angular/core';
 
@@ -11,8 +12,6 @@ import { MaterialModule } from '../shared/material/material.module';
 import { SearchComponent } from './pages/search/search.component';
 import { HeroeCardComponent } from './components/heroe-card/heroe-card.component';
 import { HeroeImagePipe } from './pipes/heroe-image.pipe';
-
-
 
 @NgModule({
   declarations: [
@@ -27,6 +26,7 @@ import { HeroeImagePipe } from './pipes/heroe-image.pipe';
   imports: [
     CommonModule,
     FlexLayoutModule,
+    FormsModule,
     HeroesRoutingModule,
     MaterialModule,
   ]

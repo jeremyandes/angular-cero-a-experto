@@ -1,1 +1,17 @@
-<p>search works!</p>
+<section fxLayout="column">
+    <div>
+        <h1>Search your hero:</h1>
+        <mat-divider></mat-divider>
+
+        <mat-form-field>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let heroe of heroes" [value]="heroe">
+                    {{ heroe.superhero }}
+                </mat-option>
+            </mat-autocomplete>
+
+            <input type="text" placeholder="Search Heroe" matInput [(ngModel)]="heroSearch" [matAutocomplete]="auto"
+                (input)="searching()">
+        </mat-form-field>
+    </div>
+</section>
