@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Heroe, Publisher } from '../../interfaces/heroe.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { switchMap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-add',
@@ -28,9 +30,18 @@ export class AddComponent implements OnInit {
     alt_img: '',
   }
 
-  constructor(private heroesService: HeroesService) { }
+  constructor(
+    private router: Router,
+    private heroesService: HeroesService,
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+      .pipe(
+        switchMap(({ id }) => this.heroesService.getHeroe(id))
+      )
+      .subscribe((heroe) => this.heroe = heroe);
   }
 
   saveHeroe() {
@@ -38,11 +49,22 @@ export class AddComponent implements OnInit {
       return;
     }
 
-    this.heroesService.addHeroe(this.heroe)
-      .subscribe({
-        next: (resp) => console.log(resp),
-        error: (error) => console.error(error),
-      });
+    this.heroe.id
+      ? this.heroesService.updateHeroe(this.heroe)
+        .subscribe({
+          next: (resp) => console.log('Updated', resp),
+          error: (error) => console.error(error),
+        })
+      : this.heroesService.addHeroe(this.heroe)
+        .subscribe({
+          next: (resp) => {
+            console.log('Added', resp);
+            this.router.navigate(['/heroes/edit', resp.id])
+          },
+          error: (error) => console.error(error),
+        });;
+
+
 
   }
 
