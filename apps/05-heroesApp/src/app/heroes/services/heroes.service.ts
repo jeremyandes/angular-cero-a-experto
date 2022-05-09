@@ -24,5 +24,8 @@ export class HeroesService {
     public getSuggests(value: string): Observable<Heroe[]> {
         return this.http.get<Heroe[]>(`${this.url}/heroes`, { params: { 'q': value, '_limit': 6 } });
     }
+    public addHeroe(heroe: Heroe): Observable<Heroe> {
+        return this.http.post<Heroe>(`${this.url}/heroes`, heroe);
+    }
 
 }
