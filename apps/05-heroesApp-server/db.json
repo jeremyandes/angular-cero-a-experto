@@ -175,6 +175,15 @@
       "publisher": "Marvel Comics",
       "alt_img": "/assets/heroes/sombra-negra.jpg",
       "id": "sombra-negra"
+    },
+    {
+      "superhero": "Black Panther",
+      "alter_ego": "T'Challa",
+      "characters": "IDK",
+      "first_appearance": "IDK",
+      "publisher": "Marvel Comics",
+      "alt_img": "https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/09/hipertextual-fortnite-rinde-homenaje-chadwick-boseman-con-impresionante-estatua-black-panther-2020149363.jpg?fit=2500%2C1687&ssl=1",
+      "id": "T7s4Zpy"
     }
   ]
 }
