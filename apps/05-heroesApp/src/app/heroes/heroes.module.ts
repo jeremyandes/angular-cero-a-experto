@@ -12,6 +12,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { SearchComponent } from './pages/search/search.component';
 import { HeroeCardComponent } from './components/heroe-card/heroe-card.component';
 import { HeroeImagePipe } from './pipes/heroe-image.pipe';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HeroeImagePipe } from './pipes/heroe-image.pipe';
     HomeComponent,
     ListComponent,
     HeroeCardComponent,
-    HeroeImagePipe
+    HeroeImagePipe,
+    ConfirmComponent
   ],
   imports: [
     CommonModule,
