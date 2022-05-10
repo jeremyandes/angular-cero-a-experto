@@ -3,12 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Heroe, Publisher } from '../../interfaces/heroe.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { switchMap } from 'rxjs/operators'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styles: [
-  ]
+  styles: [`
+    img {
+      height: auto !important;
+    }
+  `]
 })
 export class AddComponent implements OnInit {
   publishers = [
@@ -34,6 +38,7 @@ export class AddComponent implements OnInit {
     private router: Router,
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -57,13 +62,13 @@ export class AddComponent implements OnInit {
     this.heroe.id
       ? this.heroesService.updateHeroe(this.heroe)
         .subscribe({
-          next: (resp) => console.log('Updated', resp),
+          next: () => this.showSnackBar(`Heroe <${this.heroe.superhero}> updated.`),
           error: (error) => console.error(error),
         })
       : this.heroesService.addHeroe(this.heroe)
         .subscribe({
           next: (resp) => {
-            console.log('Added', resp);
+            this.showSnackBar(`New heroe <${this.heroe.superhero}> added!`);
             this.router.navigate(['/heroes/edit', resp.id])
           },
           error: (error) => console.error(error),
@@ -75,12 +80,22 @@ export class AddComponent implements OnInit {
       ? this.heroesService.deleteHeroe(this.heroe.id)
         .subscribe({
           next: (resp) => {
-            console.log(resp);
+            this.showSnackBar(`Heroe <${this.heroe.superhero}> deleted.`)
             this.router.navigate(['/heroes']);
           },
           error: (error) => console.error(error)
         })
-      : console.error(`Heroe ${this.heroe.superhero} can't be deleted.`);
+      : console.error(`Heroe <${this.heroe.superhero}> can't be deleted.`);
   }
 
+  showSnackBar(message: string) {
+    this.snackBar.open(
+      message,
+      'Close',
+      {
+        duration: 5000,
+        // Implementar más argumentos
+      }
+    )
+  }
 }
