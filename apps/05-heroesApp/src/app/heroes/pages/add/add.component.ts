@@ -68,9 +68,19 @@ export class AddComponent implements OnInit {
           },
           error: (error) => console.error(error),
         });;
+  }
 
-
-
+  deleteHeroe() {
+    this.heroe.id
+      ? this.heroesService.deleteHeroe(this.heroe.id)
+        .subscribe({
+          next: (resp) => {
+            console.log(resp);
+            this.router.navigate(['/heroes']);
+          },
+          error: (error) => console.error(error)
+        })
+      : console.error(`Heroe ${this.heroe.superhero} can't be deleted.`);
   }
 
 }
