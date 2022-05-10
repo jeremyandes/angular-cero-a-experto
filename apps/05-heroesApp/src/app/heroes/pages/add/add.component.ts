@@ -79,20 +79,25 @@ export class AddComponent implements OnInit {
   }
 
   deleteHeroe() {
-    this.dialog.open(ConfirmComponent, {
-      width: '220px',
+    const dialog = this.dialog.open(ConfirmComponent, {
+      width: '350px',
+      data: this.heroe,
     })
 
-    // this.heroe.id
-    //   ? this.heroesService.deleteHeroe(this.heroe.id)
-    //     .subscribe({
-    //       next: (resp) => {
-    //         this.showSnackBar(`Heroe <${this.heroe.superhero}> deleted.`)
-    //         this.router.navigate(['/heroes']);
-    //       },
-    //       error: (error) => console.error(error)
-    //     })
-    //   : console.error(`Heroe <${this.heroe.superhero}> can't be deleted.`);
+    dialog.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.heroe.id
+          ? this.heroesService.deleteHeroe(this.heroe.id)
+            .subscribe({
+              next: (resp) => {
+                this.showSnackBar(`Heroe <${this.heroe.superhero}> deleted.`)
+                this.router.navigate(['/heroes']);
+              },
+              error: (error) => console.error(error)
+            })
+          : console.error(`Heroe <${this.heroe.superhero}> can't be deleted.`);
+      }
+    })
   }
 
   showSnackBar(message: string) {
