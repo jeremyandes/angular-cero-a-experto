@@ -37,11 +37,16 @@ export class AddComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(
-        switchMap(({ id }) => this.heroesService.getHeroe(id))
-      )
-      .subscribe((heroe) => this.heroe = heroe);
+
+    if (this.router.url.includes('edit')) {
+      this.activatedRoute.params
+        .pipe(
+          switchMap(({ id }) => this.heroesService.getHeroe(id))
+        )
+        .subscribe((heroe) => this.heroe = heroe);
+    } else {
+      return;
+    }
   }
 
   saveHeroe() {
