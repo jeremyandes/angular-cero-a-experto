@@ -4,6 +4,8 @@ import { Heroe, Publisher } from '../../interfaces/heroe.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { switchMap } from 'rxjs/operators'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from '../../components/confirm/confirm.component';
 
 @Component({
   selector: 'app-add',
@@ -39,6 +41,7 @@ export class AddComponent implements OnInit {
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -76,16 +79,20 @@ export class AddComponent implements OnInit {
   }
 
   deleteHeroe() {
-    this.heroe.id
-      ? this.heroesService.deleteHeroe(this.heroe.id)
-        .subscribe({
-          next: (resp) => {
-            this.showSnackBar(`Heroe <${this.heroe.superhero}> deleted.`)
-            this.router.navigate(['/heroes']);
-          },
-          error: (error) => console.error(error)
-        })
-      : console.error(`Heroe <${this.heroe.superhero}> can't be deleted.`);
+    this.dialog.open(ConfirmComponent, {
+      width: '220px',
+    })
+
+    // this.heroe.id
+    //   ? this.heroesService.deleteHeroe(this.heroe.id)
+    //     .subscribe({
+    //       next: (resp) => {
+    //         this.showSnackBar(`Heroe <${this.heroe.superhero}> deleted.`)
+    //         this.router.navigate(['/heroes']);
+    //       },
+    //       error: (error) => console.error(error)
+    //     })
+    //   : console.error(`Heroe <${this.heroe.superhero}> can't be deleted.`);
   }
 
   showSnackBar(message: string) {
