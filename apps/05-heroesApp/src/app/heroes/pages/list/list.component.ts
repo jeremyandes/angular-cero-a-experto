@@ -14,7 +14,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
 
     this.heroesService.getHeroes().subscribe({
-      next: (heroes) => { this.heroes = heroes as Heroe[]; console.table(this.heroes); },
+      next: (heroes) => { this.heroes = heroes as Heroe[]; },
       error: (error) => console.error(error)
     });
 
