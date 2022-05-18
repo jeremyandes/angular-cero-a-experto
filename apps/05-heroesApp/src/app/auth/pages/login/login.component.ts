@@ -29,4 +29,9 @@ export class LoginComponent {
 
   }
 
+  loginWithoutGuard() {
+    this.authService.logout();
+    this.router.navigate(['./heroes']);
+  }
+
 }

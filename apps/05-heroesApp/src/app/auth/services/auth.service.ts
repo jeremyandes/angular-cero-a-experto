@@ -18,7 +18,15 @@ export class AuthService {
   login() {
     return this.http.get<Auth>(`${this.baseUrl}/users/1`)
       .pipe(
-        tap(auth => this._auth = auth)
+        tap(auth => {
+          this._auth = auth;
+          localStorage.setItem('idUser', this._auth.id.toString());
+        })
       );
+  }
+
+  logout() {
+    this._auth = undefined;
+    localStorage.removeItem('idUser');
   }
 }
