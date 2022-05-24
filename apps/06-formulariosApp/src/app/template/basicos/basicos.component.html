@@ -9,8 +9,10 @@
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Producto</label>
                 <div class="col-sm-10">
-                    <input ngModel name="producto" required type="text" class="form-control" placeholder="Nombre del producto">
-                    <span class="form-text text-danger">Debe ser de 3 letras</span>
+                    <input ngModel name="producto" required type="text" class="form-control" placeholder="Nombre del producto" minlength="3">
+                    <span class="form-text text-danger"
+                        *ngIf="form.controls['producto']?.invalid && form.controls['producto']?.touched"
+                    >Debe ser de 3 letras</span>
                 </div>
             </div>
             <div class="mb-4 row">
@@ -37,12 +39,20 @@
 </section>
 
 <div class="row">
-    <div class="col">
+    <div class="col-12">
         <span><strong>Value</strong></span>
         <pre>{{ form.value | json }}</pre>
     </div>
     <div class="col">
         <span><strong>Valid</strong></span>
         <pre>{{ form.valid | json }}</pre>
+    </div>
+    <div class="col">
+        <span><strong>Pristine</strong></span>
+        <pre>{{ form.pristine | json }}</pre>
+    </div>
+    <div class="col">
+        <span><strong>Touched</strong></span>
+        <pre>{{ form.touched | json }}</pre>
     </div>
 </div>
