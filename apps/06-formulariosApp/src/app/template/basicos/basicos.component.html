@@ -26,13 +26,14 @@
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Stock</label>
                 <div class="col-sm-10">
-                    <input ngModel name="stock" required type="number" class="form-control"
+                    <input ngModel customMin [minimo]="0" name="stock" required type="number" class="form-control"
                         placeholder="Stock del producto">
                 </div>
             </div>
             <div class="mb-4 row">
                 <div class="col">
-                    <button type="submit" [disabled]="form.invalid" class="btn btn-outline-dark float-end">Guardar</button>
+                    <button type="submit" [disabled]="form.invalid"
+                        class="btn btn-outline-dark float-end">Guardar</button>
                 </div>
             </div>
 
@@ -42,9 +43,13 @@
 </section>
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
         <span><strong>Value</strong></span>
         <pre>{{ form.value | json }}</pre>
+    </div>
+    <div class="col-6">
+        <span><strong>CustomDirective</strong></span>
+        <pre>{{ form.controls['stock']?.errors | json }}</pre>
     </div>
     <div class="col">
         <span><strong>Valid</strong></span>
