@@ -20,7 +20,11 @@ export class BasicosComponent implements OnInit {
   }
 
   productValid(): boolean {
-    return this.form.controls['producto']?.invalid && this.form.controls['producto']?.touched;
+    return this.form?.controls['producto']?.invalid && this.form?.controls['producto']?.touched;
+  }
+
+  precioValid(): boolean {
+    return this.form?.controls['precio']?.value < 1 && this.form?.controls['precio']?.touched;
   }
 
 }
