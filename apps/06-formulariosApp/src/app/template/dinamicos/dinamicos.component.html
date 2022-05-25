@@ -1,0 +1,55 @@
+<h2>Template: Dinámicos</h2>
+<hr>
+
+<section class="row">
+    <div class="col">
+
+        <form (ngSubmit)="guardar()" #form="ngForm" autocomplete="off">
+
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input [ngModel]="persona.nombre" name="nombre" required type="text" class="form-control"
+                        placeholder="Nombre de la persona" minlength="2">
+                    <span class="form-text text-danger" *ngIf="nombreValid()">Debe ser de 2
+                        letras</span>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Agregar</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" [(ngModel)]="nuevoJuego" name="nuevo_juego" class="form-control"
+                            placeholder="Agregar juego favorito" required (keyup.enter)="agregar()">
+                        <button class="btn btn-outline-primary" type="button" (click)="agregar()">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Favoritos</label>
+                <div class="col-sm-10">
+                    <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i = index">
+                        <input type="text" required class="form-control" [(ngModel)]="item.nombre"
+                            [name]="'favorito_' + i">
+                        <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<app-form-properties [form]="form"></app-form-properties>
+
+<div class="row">
+    <div class="col-12">
+        <span><strong>Persona</strong></span>
+        <pre>{{ persona | json }}</pre>
+    </div>
+</div>

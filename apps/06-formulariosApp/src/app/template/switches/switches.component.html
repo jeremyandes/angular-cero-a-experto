@@ -1,0 +1,69 @@
+<h2>Template: Switches</h2>
+<hr>
+
+<section class="row">
+    <div class="col">
+        <form (ngSubmit)="guardar()" #form="ngForm" autocomplete="off">
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Género</label>
+                <div class="col-sm-9 row pt-2">
+                    <div class="form-check">
+                        <input class="form-check-input" [(ngModel)]="persona.genero" type="radio" name="radioGenero"
+                            value="F" id="radioFemenino" required>
+                        <label class="form-check-label" for="radioFemenino">
+                            Femenino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" [(ngModel)]="persona.genero" type="radio" name="radioGenero"
+                            value="M" id="radioMasculino" required>
+                        <label class="form-check-label" for="radioMasculino">
+                            Masculino
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Notificaciones</label>
+                <div class="col-sm-9 row pt-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" [(ngModel)]="persona.notificaciones" name="notificaciones"
+                            type="checkbox" role="switch" id="switchNotificaciones">
+                        <label class="form-check-label" for="switchNotificaciones">Quiero recibir notificaciones</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9 row pt-2">
+                    <div class="form-check">
+                        <input class="form-check-input" [(ngModel)]="terminosYCondiciones" name="tyc" type="checkbox"
+                            id="tyc" required>
+                        <label class="form-check-label" for="tyc">
+                            He leído y acepto los términos y condiciones de uso
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <div class="col">
+                    <button type="submit" [disabled]="form.invalid"
+                        class="btn btn-outline-dark float-end">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<app-form-properties [form]="form"></app-form-properties>
+
+<div class="row">
+    <div class="col-12 col-sm-6">
+        <span><strong>Persona</strong></span>
+        <pre>{{ persona | json }}</pre>
+    </div>
+    <div class="col-12 col-sm-6">
+        <span><strong>Términos y Condiciones</strong></span>
+        <pre>{{ form.controls['tyc']?.errors| json }}</pre>
+    </div>
+</div>
