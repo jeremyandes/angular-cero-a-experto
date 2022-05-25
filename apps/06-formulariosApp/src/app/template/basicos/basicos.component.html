@@ -9,7 +9,7 @@
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Producto</label>
                 <div class="col-sm-10">
-                    <input ngModel name="producto" required type="text" class="form-control"
+                    <input [ngModel]="initForm.producto" name="producto" required type="text" class="form-control"
                         placeholder="Nombre del producto" minlength="3">
                     <span class="form-text text-danger" *ngIf="productValid()">Debe ser de 3
                         letras</span>
@@ -18,7 +18,7 @@
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Precio</label>
                 <div class="col-sm-10">
-                    <input ngModel name="precio" required type="number" class="form-control"
+                    <input [ngModel]="initForm.precio" name="precio" required type="number" class="form-control"
                         placeholder="Precio del producto" min="1">
                     <span class="form-text text-danger" *ngIf="precioValid()">Debe ser mayor a 0</span>
                 </div>
@@ -26,7 +26,7 @@
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Stock</label>
                 <div class="col-sm-10">
-                    <input ngModel customMin [minimo]="0" name="stock" required type="number" class="form-control"
+                    <input [ngModel]="initForm.stock" customMin [minimo]="0" name="stock" required type="number" class="form-control"
                         placeholder="Stock del producto">
                 </div>
             </div>
