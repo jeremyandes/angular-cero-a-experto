@@ -7,6 +7,7 @@ import { DinamicosComponent } from './dinamicos/dinamicos.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { FormsModule } from '@angular/forms';
 import { CustomMinDirective } from './directives/custom-min.directive';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CustomMinDirective } from './directives/custom-min.directive';
   imports: [
     CommonModule,
     FormsModule,
-    TemplateRoutingModule
+    TemplateRoutingModule,
+    SharedModule,
   ]
 })
 export class TemplateModule { }

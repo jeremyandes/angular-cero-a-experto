@@ -45,25 +45,11 @@
     </div>
 </section>
 
+<app-form-properties [form]="form"></app-form-properties>
+
 <div class="row">
-    <div class="col-6">
-        <span><strong>Value</strong></span>
-        <pre>{{ form.value | json }}</pre>
-    </div>
-    <div class="col-6">
+    <div class="col-12">
         <span><strong>Persona</strong></span>
         <pre>{{ persona | json }}</pre>
-    </div>
-    <div class="col">
-        <span><strong>Valid</strong></span>
-        <pre>{{ form.valid | json }}</pre>
-    </div>
-    <div class="col">
-        <span><strong>Pristine</strong></span>
-        <pre>{{ form.pristine | json }}</pre>
-    </div>
-    <div class="col">
-        <span><strong>Touched</strong></span>
-        <pre>{{ form.touched | json }}</pre>
     </div>
 </div>
