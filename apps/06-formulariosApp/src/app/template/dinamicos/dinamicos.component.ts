@@ -28,6 +28,7 @@ export class DinamicosComponent implements OnInit {
       { id: 4, nombre: 'Diep.io' },
     ]
   }
+  nuevoJuego: string = '';
 
   constructor() { }
 
@@ -36,6 +37,13 @@ export class DinamicosComponent implements OnInit {
 
   guardar() { }
 
+  agregar() {
+    const nuevoFavorito: Favorito = {
+      nombre: this.nuevoJuego,
+      id: Date.now()
+    }
+    this.persona.favoritos.push({ ...nuevoFavorito });
+  }
   eliminar(i: number) {
     this.persona.favoritos.splice(i, 1);
   }
