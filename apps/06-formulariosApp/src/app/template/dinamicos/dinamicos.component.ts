@@ -24,6 +24,8 @@ export class DinamicosComponent implements OnInit {
     favoritos: [
       { id: 1, nombre: 'CSGO' },
       { id: 2, nombre: 'Valorant' },
+      { id: 3, nombre: 'Rainbow Six Siege' },
+      { id: 4, nombre: 'Diep.io' },
     ]
   }
 
@@ -33,6 +35,10 @@ export class DinamicosComponent implements OnInit {
   }
 
   guardar() { }
+
+  eliminar(i: number) {
+    this.persona.favoritos.splice(i, 1);
+  }
 
   nombreValid() {
     return this.form?.controls['nombre']?.errors && this.form?.controls['nombre']?.touched
