@@ -43,6 +43,7 @@ export class DinamicosComponent implements OnInit {
       id: Date.now()
     }
     this.persona.favoritos.push({ ...nuevoFavorito });
+    this.nuevoJuego = '';
   }
   eliminar(i: number) {
     this.persona.favoritos.splice(i, 1);
