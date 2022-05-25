@@ -9,7 +9,7 @@
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-10">
-                    <input ngModel name="nombre" required type="text" class="form-control"
+                    <input [ngModel]="persona.nombre" name="nombre" required type="text" class="form-control"
                         placeholder="Nombre de la persona" minlength="2">
                     <span class="form-text text-danger" *ngIf="nombreValid()">Debe ser de 2
                         letras</span>
@@ -29,12 +29,9 @@
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Favoritos</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control mb-1">
-                    <input type="text" class="form-control mb-1">
-                    <input type="text" class="form-control mb-1">
-                    <input type="text" class="form-control mb-1">
-                    <input type="text" class="form-control mb-1">
-                    <input type="text" class="form-control mb-1">
+                    <input type="text" required class="form-control mb-1"
+                        *ngFor="let item of persona.favoritos; let i = index" [(ngModel)]="item.nombre"
+                        [name]="'favorito_' + i">
                 </div>
             </div>
             <div class="mb-4 row">
@@ -50,9 +47,13 @@
 </section>
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
         <span><strong>Value</strong></span>
         <pre>{{ form.value | json }}</pre>
+    </div>
+    <div class="col-6">
+        <span><strong>Persona</strong></span>
+        <pre>{{ persona | json }}</pre>
     </div>
     <div class="col">
         <span><strong>Valid</strong></span>
