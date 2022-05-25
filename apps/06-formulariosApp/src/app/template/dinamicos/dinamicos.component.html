@@ -1,1 +1,69 @@
-<p>dinamicos works!</p>
+<h2>Template: Dinámicos</h2>
+<hr>
+
+<section class="row">
+    <div class="col">
+
+        <form (ngSubmit)="guardar()" #form="ngForm" autocomplete="off">
+
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input ngModel name="nombre" required type="text" class="form-control"
+                        placeholder="Nombre de la persona" minlength="2">
+                    <span class="form-text text-danger" *ngIf="nombreValid()">Debe ser de 2
+                        letras</span>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Agregar</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Agregar juego favorito">
+                        <button class="btn btn-outline-primary">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Favoritos</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control mb-1">
+                    <input type="text" class="form-control mb-1">
+                    <input type="text" class="form-control mb-1">
+                    <input type="text" class="form-control mb-1">
+                    <input type="text" class="form-control mb-1">
+                    <input type="text" class="form-control mb-1">
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <div class="col">
+                    <button (click)="guardar()" type="submit" [disabled]="form.invalid"
+                        class="btn btn-outline-dark float-end">Guardar</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<div class="row">
+    <div class="col-12">
+        <span><strong>Value</strong></span>
+        <pre>{{ form.value | json }}</pre>
+    </div>
+    <div class="col">
+        <span><strong>Valid</strong></span>
+        <pre>{{ form.valid | json }}</pre>
+    </div>
+    <div class="col">
+        <span><strong>Pristine</strong></span>
+        <pre>{{ form.pristine | json }}</pre>
+    </div>
+    <div class="col">
+        <span><strong>Touched</strong></span>
+        <pre>{{ form.touched | json }}</pre>
+    </div>
+</div>
