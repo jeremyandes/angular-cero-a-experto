@@ -15,6 +15,7 @@ export class FormPropertiesComponent implements OnInit {
   }
 
   get formKeys() { return Object.keys(this.form.controls); }
+
   controlInfo(key: string) {
     return {
       value: this.form.controls[key].value,

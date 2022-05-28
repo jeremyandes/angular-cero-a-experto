@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Person {
-  genero: string;
+  radioGenero: string;
   notificaciones: boolean;
 }
 
@@ -15,7 +15,7 @@ interface Person {
 export class SwitchesComponent implements OnInit {
   form: FormGroup;
   persona: Person = {
-    genero: 'F',
+    radioGenero: 'F',
     notificaciones: true,
   }
 
@@ -24,6 +24,10 @@ export class SwitchesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form.reset({
+      ...this.persona,
+      tyc: false,
+    })
   }
 
   createForm(): FormGroup {
