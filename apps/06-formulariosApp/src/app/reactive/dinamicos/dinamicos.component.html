@@ -1,1 +1,52 @@
-<p>dinamicos works!</p>
+<h2>Reactive: Dinámicos</h2>
+<hr>
+
+<section class="row">
+    <div class="col">
+
+        <form autocomplete="off">
+
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input name="nombre" type="text" class="form-control" placeholder="Nombre de la persona">
+                    <span class="form-text text-danger">Debe ser de 2
+                        letras</span>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Agregar</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" name="nuevo_juego" class="form-control" placeholder="Agregar juego favorito">
+                        <button class="btn btn-outline-primary" type="button">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Favoritos</label>
+                <div class="col-sm-10">
+                    <div class="input-group mb-1">
+                        <input type="text" required class="form-control">
+                        <button class="btn btn-outline-danger" type="button">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- <app-form-properties [form]="form"></app-form-properties>
+
+<div class="row">
+    <div class="col-12">
+        <span><strong>Persona</strong></span>
+        <pre>{{ persona | json }}</pre>
+    </div>
+</div> -->
