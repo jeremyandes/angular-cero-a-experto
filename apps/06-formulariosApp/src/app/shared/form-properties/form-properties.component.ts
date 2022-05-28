@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-form-properties',
@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styles: [``]
 })
 export class FormPropertiesComponent implements OnInit {
-  @Input() form!: NgForm;
+  @Input() form!: NgForm | FormGroup;
 
   constructor() { }
 
