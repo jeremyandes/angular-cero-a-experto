@@ -31,9 +31,9 @@
             </div>
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Favoritos</label>
-                <div class="col-sm-10">
-                    <div class="input-group mb-1">
-                        <input type="text" required class="form-control">
+                <div class="col-sm-10" formArrayName="favoritos">
+                    <div class="input-group mb-1" *ngFor="let favorito of favoritos.controls; let i = index;">
+                        <input type="text" class="form-control" [formControlName]="i">
                         <button class="btn btn-outline-danger" type="button">
                             Eliminar
                         </button>

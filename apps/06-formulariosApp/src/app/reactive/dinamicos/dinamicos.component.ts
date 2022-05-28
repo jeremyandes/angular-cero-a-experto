@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -20,8 +20,19 @@ export class DinamicosComponent implements OnInit {
   createForm(): FormGroup {
     return this.fb.group({
       nombre: [null, [Validators.required, Validators.minLength(2)]],
-      nuevoJuego: [null, [Validators.required, Validators.minLength(2)]]
+      nuevoJuego: [null, [Validators.required, Validators.minLength(2)]],
+      favoritos: this.fb.array(
+        [
+          ['CSGO', Validators.required],
+          ['Valorant', Validators.required],
+          ['Battlefield 4', Validators.required],
+        ], [Validators.required]
+      )
     })
+  }
+
+  get favoritos(): FormArray {
+    return this.form.get('favoritos') as FormArray;
   }
 
   fieldValidator(field: string): boolean | null {
