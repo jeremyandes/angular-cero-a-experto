@@ -11,7 +11,7 @@
                 <div class="col-sm-10">
                     <input name="producto" formControlName="producto" type="text" class="form-control"
                         placeholder="Nombre del producto">
-                    <span class="form-text text-danger">Debe ser de 3
+                    <span class="form-text text-danger" *ngIf="fieldValidation('producto')">Debe ser de 3
                         letras</span>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="col-sm-10">
                     <input name="precio" formControlName="precio" type="number" class="form-control"
                         placeholder="Precio del producto">
-                    <span class="form-text text-danger">Debe ser mayor a 0</span>
+                    <span class="form-text text-danger" *ngIf="fieldValidation('precio')">Debe ser mayor a 1</span>
                 </div>
             </div>
             <div class="mb-4 row">
@@ -28,6 +28,7 @@
                 <div class="col-sm-10">
                     <input name="stock" formControlName="stock" type="number" class="form-control"
                         placeholder="Stock del producto">
+                    <span class="form-text text-danger" *ngIf="fieldValidation('stock')">Debe ser mayor a 0</span>
                 </div>
             </div>
             <div class="mb-4 row">

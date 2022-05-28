@@ -22,13 +22,15 @@ export class BasicosComponent {
   // })
 
   form: FormGroup = this.fb.group({
-    producto: ['RTX 3090', [Validators.required, Validators.minLength(3)]],
-    precio: [1, [Validators.required, Validators.min(1)]],
-    stock: [0, [Validators.required, Validators.min(0)]],
+    producto: [null, [Validators.required, Validators.minLength(3)]],
+    precio: [null, [Validators.required, Validators.min(1)]],
+    stock: [null, [Validators.required, Validators.min(0)]],
   })
 
   constructor(private fb: FormBuilder) { }
 
-
+  fieldValidation(field: string): boolean | null {
+    return this.form.controls[field]?.errors && this.form.controls[field]?.touched;
+  }
 
 }
