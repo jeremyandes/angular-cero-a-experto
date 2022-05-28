@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: [
   ]
 })
-export class BasicosComponent {
+export class BasicosComponent implements OnInit {
 
   // form: FormGroup = new FormGroup({
   //   'producto': new FormControl(
@@ -29,8 +29,30 @@ export class BasicosComponent {
 
   constructor(private fb: FormBuilder) { }
 
+  ngOnInit(): void {
+
+    // this.form.setValue({
+    //   producto: 'RTX 3090',
+    //   precio: 2500,
+    //   stock: 10,
+    // })
+
+    this.form.reset({
+      producto: 'RTX 3090',
+      precio: 2500,
+    })
+  }
+
   fieldValidation(field: string): boolean | null {
     return this.form.controls[field]?.errors && this.form.controls[field]?.touched;
   }
 
+  save() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+    } else {
+      console.log(this.form.value);
+      this.form.reset();
+    }
+  }
 }
