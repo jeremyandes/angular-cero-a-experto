@@ -14,4 +14,14 @@ export class FormPropertiesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get formKeys() { return Object.keys(this.form.controls); }
+  controlInfo(key: string) {
+    return {
+      value: this.form.controls[key].value,
+      valid: this.form.controls[key].valid,
+      touched: this.form.controls[key].touched,
+      pristine: this.form.controls[key].pristine
+    }
+  }
+
 }

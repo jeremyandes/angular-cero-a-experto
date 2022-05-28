@@ -3,18 +3,20 @@
 
 <section class="row">
     <div class="col">
-        <form autocomplete="off">
+        <form autocomplete="off" [formGroup]="form">
             <div class="row mb-3">
                 <label for="" class="col-sm-3 col-form-label">Género</label>
                 <div class="col-sm-9 row pt-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioGenero" value="F" id="radioFemenino">
+                        <input class="form-check-input" type="radio" name="radioGenero" formControlName="radioGenero"
+                            value="F" id="radioFemenino">
                         <label class="form-check-label" for="radioFemenino">
                             Femenino
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioGenero" value="M" id="radioMasculino">
+                        <input class="form-check-input" type="radio" name="radioGenero" formControlName="radioGenero"
+                            value="M" id="radioMasculino">
                         <label class="form-check-label" for="radioMasculino">
                             Masculino
                         </label>
@@ -25,8 +27,8 @@
                 <label for="" class="col-sm-3 col-form-label">Notificaciones</label>
                 <div class="col-sm-9 row pt-2">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" name="notificaciones" type="checkbox" role="switch"
-                            id="switchNotificaciones">
+                        <input class="form-check-input" name="notificaciones" formControlName="notificaciones"
+                            type="checkbox" role="switch" id="switchNotificaciones">
                         <label class="form-check-label" for="switchNotificaciones">Quiero recibir notificaciones</label>
                     </div>
                 </div>
@@ -35,7 +37,7 @@
                 <label for="" class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9 row pt-2">
                     <div class="form-check">
-                        <input class="form-check-input" name="tyc" type="checkbox" id="tyc">
+                        <input class="form-check-input" name="tyc" formControlName="tyc" type="checkbox" id="tyc">
                         <label class="form-check-label" for="tyc">
                             He leído y acepto los términos y condiciones de uso
                         </label>
@@ -51,9 +53,9 @@
     </div>
 </section>
 
-<!-- <app-form-properties [form]="form"></app-form-properties>
+<app-form-properties [form]="form"></app-form-properties>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-12 col-sm-6">
         <span><strong>Persona</strong></span>
         <pre>{{ persona | json }}</pre>
