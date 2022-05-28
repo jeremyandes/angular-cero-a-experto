@@ -27,12 +27,12 @@ export class DinamicosComponent implements OnInit {
           ['CSGO', Validators.required],
           ['Valorant', Validators.required],
           ['Battlefield 4', Validators.required],
-        ], [Validators.required]
+        ]
       )
     })
   }
   createFavorito(): FormControl {
-    return this.fb.control('', [Validators.required]);
+    return this.fb.control('', [Validators.required, Validators.minLength(2)]);
   }
 
   get favoritos(): FormArray {
@@ -64,6 +64,10 @@ export class DinamicosComponent implements OnInit {
     } else {
       console.log(this.form.value);
     }
+  }
+
+  delete(i: number) {
+    this.favoritos.removeAt(i);
   }
 
 }
