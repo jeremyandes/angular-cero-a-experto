@@ -21,13 +21,11 @@ export class BasicosComponent implements OnInit {
   //   ),
   // })
 
-  form: FormGroup = this.fb.group({
-    producto: [null, [Validators.required, Validators.minLength(3)]],
-    precio: [null, [Validators.required, Validators.min(1)]],
-    stock: [null, [Validators.required, Validators.min(0)]],
-  })
+  form: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.form = this.createForm();
+  }
 
   ngOnInit(): void {
 
@@ -41,6 +39,14 @@ export class BasicosComponent implements OnInit {
       producto: 'RTX 3090',
       precio: 2500,
     })
+  }
+
+  createForm(): FormGroup {
+    return this.fb.group({
+      producto: [null, [Validators.required, Validators.minLength(3)]],
+      precio: [null, [Validators.required, Validators.min(1)]],
+      stock: [null, [Validators.required, Validators.min(0)]],
+    });
   }
 
   fieldValidation(field: string): boolean | null {

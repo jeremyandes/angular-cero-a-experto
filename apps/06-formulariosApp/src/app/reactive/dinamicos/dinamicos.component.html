@@ -4,13 +4,14 @@
 <section class="row">
     <div class="col">
 
-        <form autocomplete="off">
+        <form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
 
             <div class="mb-4 row">
                 <label for="" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-10">
-                    <input name="nombre" type="text" class="form-control" placeholder="Nombre de la persona">
-                    <span class="form-text text-danger">Debe ser de 2
+                    <input name="nombre" formControlName="nombre" type="text" class="form-control"
+                        placeholder="Nombre de la persona">
+                    <span class="form-text text-danger" *ngIf="fieldValidator('nombre')">Debe ser de 2
                         letras</span>
                 </div>
             </div>
@@ -18,11 +19,14 @@
                 <label for="" class="col-sm-2 col-form-label">Agregar</label>
                 <div class="col-sm-10">
                     <div class="input-group">
-                        <input type="text" name="nuevo_juego" class="form-control" placeholder="Agregar juego favorito">
+                        <input type="text" name="nuevoJuego" formControlName="nuevoJuego" class="form-control"
+                            placeholder="Agregar juego favorito">
                         <button class="btn btn-outline-primary" type="button">
                             Agregar
                         </button>
                     </div>
+                    <span class="form-text text-danger" *ngIf="fieldValidator('nuevoJuego')">Debe ser de 2
+                        letras</span>
                 </div>
             </div>
             <div class="mb-4 row">
@@ -36,15 +40,20 @@
                     </div>
                 </div>
             </div>
+            <div class="mb-4 row">
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-dark float-end">Guardar</button>
+                </div>
+            </div>
 
         </form>
 
     </div>
 </section>
 
-<!-- <app-form-properties [form]="form"></app-form-properties>
+<app-form-properties [form]="form"></app-form-properties>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-12">
         <span><strong>Persona</strong></span>
         <pre>{{ persona | json }}</pre>
