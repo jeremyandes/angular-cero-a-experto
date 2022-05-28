@@ -22,7 +22,7 @@ export class BasicosComponent {
   // })
 
   form: FormGroup = this.fb.group({
-    producto: ['RTX 3090', [Validators.required]],
+    producto: ['RTX 3090', [Validators.required, Validators.minLength(3)]],
     precio: [1, [Validators.required, Validators.min(1)]],
     stock: [0, [Validators.required, Validators.min(0)]],
   })
