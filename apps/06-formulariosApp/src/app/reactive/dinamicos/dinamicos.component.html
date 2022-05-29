@@ -1,1 +1,61 @@
-<p>dinamicos works!</p>
+<h2>Reactive: Dinámicos</h2>
+<hr>
+
+<section class="row">
+    <div class="col">
+
+        <form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
+
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input name="nombre" formControlName="nombre" type="text" class="form-control"
+                        placeholder="Nombre de la persona">
+                    <span class="form-text text-danger" *ngIf="fieldValidator('nombre')">Debe ser de 2
+                        letras</span>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Agregar</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" [formControl]="newFavorito" class="form-control"
+                            placeholder="Agregar juego favorito" (keyup.enter)="addFavorito()">
+                        <button class="btn btn-outline-primary" type="button" (click)="addFavorito()">
+                            Agregar
+                        </button>
+                    </div>
+                    <span class="form-text text-danger" *ngIf="controlValidator(newFavorito)">Debe ser de 2
+                        letras</span>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label for="" class="col-sm-2 col-form-label">Favoritos</label>
+                <div class="col-sm-10" formArrayName="favoritos">
+                    <div class="input-group mb-1" *ngFor="let favorito of favoritos.controls; let i = index;">
+                        <input type="text" class="form-control" [formControlName]="i">
+                        <button class="btn btn-outline-danger" type="button" (click)="delete(i)">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-dark float-end">Guardar</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<app-form-properties [form]="form"></app-form-properties>
+
+<div class="row">
+    <div class="col-12">
+        <span><strong>New Favorito</strong></span>
+        <pre>{{ {valid: newFavorito.valid, value: newFavorito.value} | json }}</pre>
+    </div>
+</div>
