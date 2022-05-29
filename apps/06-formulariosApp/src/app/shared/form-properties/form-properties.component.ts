@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { AbstractControl, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-form-properties',
@@ -17,11 +17,13 @@ export class FormPropertiesComponent implements OnInit {
   get formKeys() { return Object.keys(this.form.controls); }
 
   controlInfo(key: string) {
+    const control: AbstractControl = this.form.controls[key];
     return {
-      value: this.form.controls[key].value,
-      valid: this.form.controls[key].valid,
-      touched: this.form.controls[key].touched,
-      pristine: this.form.controls[key].pristine
+      value: control.value,
+      valid: control.valid,
+      touched: control.touched,
+      pristine: control.pristine,
+      errors: control.errors
     }
   }
 
