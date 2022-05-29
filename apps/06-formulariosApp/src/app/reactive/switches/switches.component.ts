@@ -28,6 +28,13 @@ export class SwitchesComponent implements OnInit {
       ...this.persona,
       tyc: false,
     })
+
+    this.form.valueChanges.subscribe({
+      next: ({ tyc, ...args }) => {
+        console.log(tyc, args);
+      },
+      error: (err) => { console.error(err) }
+    })
   }
 
   createForm(): FormGroup {
@@ -36,6 +43,13 @@ export class SwitchesComponent implements OnInit {
       notificaciones: [true, Validators.required],
       tyc: [false, Validators.required],
     })
+  }
+
+  save() {
+    const formValue = { ...this.form.value };
+    delete formValue.tyc;
+
+    console.log(formValue);
   }
 
 }
