@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegExEnum } from 'src/app/shared/enums/regEx.enum';
+import { RegExpEnum } from 'src/app/shared/enums/regExp.enum';
 
 @Component({
   selector: 'app-register',
@@ -22,9 +22,12 @@ export class RegisterComponent implements OnInit {
       fullname: ['', [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern(RegExEnum.FULL_NAME),
+        Validators.pattern(RegExpEnum.FULL_NAME),
       ]],
-      email: ['', [Validators.required]],
+      email: ['', [
+        Validators.required,
+        Validators.pattern(RegExpEnum.EMAIL),
+      ]],
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
