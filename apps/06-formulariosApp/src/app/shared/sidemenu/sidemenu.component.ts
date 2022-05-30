@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 
 
-
+interface MenuArray {
+  name: string;
+  items: MenuItem[];
+}
 interface MenuItem {
   text: string;
   route: string;
@@ -45,6 +48,32 @@ export class SidemenuComponent implements OnInit {
     {
       text: 'Switches',
       route: 'reactive/switches'
+    },
+  ];
+
+  authItems: MenuItem[] = [
+    {
+      text: 'Login',
+      route: 'auth/login'
+    },
+    {
+      text: 'Register',
+      route: 'auth/register'
+    },
+  ];
+
+  menuItems: MenuArray[] = [
+    {
+      name: 'Template',
+      items: this.templateItems,
+    },
+    {
+      name: 'Reactive',
+      items: this.reactiveItems,
+    },
+    {
+      name: 'Auth',
+      items: this.authItems,
     },
   ];
 
