@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { RegExpEnum } from 'src/app/shared/enums/regExp.enum';
 
 @Component({
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     return this.form.get(field)?.invalid && this.form.get(field)?.touched;
   }
 
-  isUsernameLike(control: FormControl) {
+  isUsernameLike(control: FormControl): ValidationErrors | null {
     const value = control?.value.trim().toLowerCase();
     return value === 'jeremyandes'
       ? {
