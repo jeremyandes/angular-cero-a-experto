@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegExpEnum } from 'src/app/shared/enums/regExp.enum';
 
 @Component({
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern(RegExpEnum.EMAIL),
       ]],
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required, this.isUsernameLike]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
     })
@@ -36,6 +36,15 @@ export class RegisterComponent implements OnInit {
 
   invalidField(field: string) {
     return this.form.get(field)?.invalid && this.form.get(field)?.touched;
+  }
+
+  isUsernameLike(control: FormControl) {
+    const value = control?.value.trim().toLowerCase();
+    return value === 'jeremyandes'
+      ? {
+        usernameMatch: true,
+      }
+      : null;
   }
 
   submitForm(): void {
