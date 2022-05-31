@@ -38,7 +38,8 @@
                 <div class="col-sm-10">
                     <input type="password" name="password" formControlName="password" class="form-control"
                         placeholder="Password de la cuenta">
-                    <span class="form-text text-danger" *ngIf="invalidField('password')">Requerido.</span>
+                    <span class="form-text text-danger" *ngIf="invalidField('password')">Debe ser mayor a 6
+                        caracteres.</span>
                 </div>
             </div>
 
@@ -47,7 +48,7 @@
                 <div class="col-sm-10">
                     <input type="password" name="confirmPassword" formControlName="confirmPassword" class="form-control"
                         placeholder="Confirmar password de la cuenta">
-                    <span class="form-text text-danger" *ngIf="invalidField('confirmPassword')">Requerido.</span>
+                    <span class="form-text text-danger" *ngIf="invalidField('confirmPassword')">Las contraseñas no coinciden.</span>
                 </div>
             </div>
 
