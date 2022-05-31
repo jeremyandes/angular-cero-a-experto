@@ -3,6 +3,13 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { RegExpEnum } from 'src/app/shared/enums/regExp.enum';
 import { EmailValidatorService } from 'src/app/shared/validators/email-validator.service';
 
+
+interface CustomErrors {
+  required?: string | null;
+  pattern?: string | null;
+  emailMatch?: string | null;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,6 +17,11 @@ import { EmailValidatorService } from 'src/app/shared/validators/email-validator
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
+  customErrors: CustomErrors = {
+    required: 'El campo es requerido',
+    pattern: 'Tiene que ser de formato email',
+    emailMatch: 'El email ya existe',
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -26,6 +38,20 @@ export class RegisterComponent implements OnInit {
       password: '123456',
       confirmPassword: '123456',
     })
+  }
+
+  get emailError(): string | null | undefined {
+    const error = this.form.get('email')?.errors;
+
+    if (error?.['required']) {
+      return this.customErrors.required;
+    } else if (error?.['pattern']) {
+      return this.customErrors.pattern;
+    } else if (error?.['emailMatch']) {
+      return this.customErrors.emailMatch;
+    }
+
+    return '';
   }
 
   createForm(): FormGroup {
@@ -74,18 +100,6 @@ export class RegisterComponent implements OnInit {
 
       return null;
     }
-  }
-
-  emailRequired() {
-    return this.form.get('email')?.errors?.['required'] && this.form.get('email')?.touched;
-  }
-
-  emailFormat() {
-    return this.form.get('email')?.errors?.['pattern'] && this.form.get('email')?.touched;
-  }
-
-  emailExists() {
-    return this.form.get('email')?.errors?.['emailMatch'] && this.form.get('email')?.touched;
   }
 
   submitForm(): void {
