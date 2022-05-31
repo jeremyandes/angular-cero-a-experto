@@ -19,6 +19,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form.reset({
+      fullname: 'Jeremy Andes',
+      email: 'test1@test.com',
+      username: 'jeremy',
+      password: '123456',
+      confirmPassword: '123456',
+    })
   }
 
   createForm(): FormGroup {
