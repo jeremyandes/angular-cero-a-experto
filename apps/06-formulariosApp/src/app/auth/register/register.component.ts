@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { RegExpEnum } from 'src/app/shared/enums/regExp.enum';
+import { EmailValidatorService } from 'src/app/shared/validators/email-validator.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,10 @@ import { RegExpEnum } from 'src/app/shared/enums/regExp.enum';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private emailValidator: EmailValidatorService,
+  ) {
     this.form = this.createForm();
   }
 
@@ -27,7 +31,7 @@ export class RegisterComponent implements OnInit {
       email: ['', [
         Validators.required,
         Validators.pattern(RegExpEnum.EMAIL),
-      ]],
+      ], [this.emailValidator]],
       username: ['', [Validators.required, this.isUsernameLike]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
