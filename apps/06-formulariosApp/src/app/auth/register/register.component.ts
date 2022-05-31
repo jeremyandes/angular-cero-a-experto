@@ -76,6 +76,18 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  emailRequired() {
+    return this.form.get('email')?.errors?.['required'] && this.form.get('email')?.touched;
+  }
+
+  emailFormat() {
+    return this.form.get('email')?.errors?.['pattern'] && this.form.get('email')?.touched;
+  }
+
+  emailExists() {
+    return this.form.get('email')?.errors?.['emailMatch'] && this.form.get('email')?.touched;
+  }
+
   submitForm(): void {
     console.log(this.form.value);
 
