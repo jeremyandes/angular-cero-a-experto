@@ -1,1 +1,25 @@
-<p>selector-page works!</p>
+<h1>Selectores Anidados</h1>
+<hr>
+
+<form [formGroup]="form" autocomplete="off" (ngSubmit)="guardar()">
+
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <label class="form-label">Continente:</label>
+            <select class="form-control" formControlName="continente">
+                <option selected disabled>Seleccione un continente</option>
+                <option value="1">América</option>
+                <option value="2">Europa</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="col">
+            <button type="submit" class="btn btn-outline-dark float-end">Seleccionar</button>
+        </div>
+    </div>
+
+</form>
+
+<app-form-properties [form]="form"></app-form-properties>

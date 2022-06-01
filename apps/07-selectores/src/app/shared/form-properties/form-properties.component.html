@@ -1,0 +1,33 @@
+<div class="row my-4">
+    <hr>
+    <div class="col-12 col-sm-4">
+        <span><strong>Valid</strong></span>
+        <pre>{{ form.valid | json }}</pre>
+    </div>
+    <div class="col-12 col-sm-4">
+        <span><strong>Status</strong></span>
+        <pre>{{ form.status | json }}</pre>
+    </div>
+    <div class="col-12 col-sm-4">
+        <span><strong>Pristine</strong></span>
+        <pre>{{ form.pristine | json }}</pre>
+    </div>
+    <div class="col-12 col-sm-4">
+        <span><strong>Touched</strong></span>
+        <pre>{{ form.touched | json }}</pre>
+    </div>
+    <div class="col-12 col-sm-4">
+        <span><strong>Errors</strong></span>
+        <pre>{{ form.errors | json }}</pre>
+    </div>
+    <hr>
+    <div class="col-12 col-md-6 col-lg-4">
+        <span><strong>Form Value</strong></span>
+        <pre>{{ form.value | json }}</pre>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let key of formKeys;">
+        <span><strong>Control: {{ key | titlecase }}</strong></span>
+        <pre>{{ controlInfo(key) | json }}</pre>
+    </div>
+    <hr>
+</div>
