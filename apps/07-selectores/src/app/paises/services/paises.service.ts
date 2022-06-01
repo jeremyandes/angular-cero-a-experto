@@ -22,7 +22,7 @@ export class PaisesService {
   get regiones(): string[] { return this._regiones; }
   set regiones(regiones: string[]) { this._regiones = regiones; }
 
-  getRegiones(region: string): Observable<Pais[]> {
+  getPaisesPorRegion(region: string): Observable<Pais[]> {
     return this.http.get<Pais[]>(`${this.baseUrl}/region/${region}/`, { params: this.httpParams });
   }
 }
