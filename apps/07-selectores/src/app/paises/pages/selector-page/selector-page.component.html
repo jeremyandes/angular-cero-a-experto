@@ -5,10 +5,17 @@
 
     <div class="row">
         <div class="col-12 col-sm-6">
-            <label class="form-label">Continente:</label>
-            <select class="form-control" formControlName="continente">
-                <option selected disabled>Seleccione un continente</option>
+            <label class="form-label">Región:</label>
+            <select class="form-control" formControlName="region">
+                <option selected disabled>Seleccione una región</option>
                 <option *ngFor="let region of regiones" [value]="region | lowercase">{{ region }}</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-6" *ngIf="paises.length > 0">
+            <label class="form-label">País:</label>
+            <select class="form-control" formControlName="pais">
+                <option selected disabled>Seleccione un País</option>
+                <option *ngFor="let pais of paises" [value]="pais.cca3">{{ pais.name.common }}</option>
             </select>
         </div>
     </div>
