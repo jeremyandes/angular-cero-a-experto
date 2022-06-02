@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap, tap } from 'rxjs';
-import { Pais } from '../../interfaces/pais.interface';
+import { Pais, PaisSmall } from '../../interfaces/pais.interface';
 import { PaisesService } from '../../services/paises.service';
 
 @Component({
@@ -11,8 +11,13 @@ import { PaisesService } from '../../services/paises.service';
 })
 export class SelectorPageComponent implements OnInit {
   form: FormGroup;
+
   regiones: string[] = [];
-  paises: Pais[] = [];
+  paises: PaisSmall[] = [];
+  fronteras: any[] = [];
+
+  selectedRegion: string = '';
+  selectedPais: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -24,14 +29,8 @@ export class SelectorPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.form.reset({
-      region: '',
-      pais: '',
-    })
-
     this.getRegiones();
-
+    this.getPais();
   }
 
 
@@ -39,6 +38,7 @@ export class SelectorPageComponent implements OnInit {
     return this.fb.group({
       region: ['', Validators.required],
       pais: ['', Validators.required],
+      frontera: ['', Validators.required],
     });
   }
 
@@ -48,8 +48,14 @@ export class SelectorPageComponent implements OnInit {
         tap(() => this.form.get('pais')?.reset('')),
         switchMap(region => this.paisesService.getPaisesPorRegion(region))
       )
-      .subscribe(paises => this.paises = paises.sort((a: Pais, b: Pais) => a.name.common < b.name.common ? -1 : 1));
+      .subscribe(paises => this.paises = paises.sort((a: PaisSmall, b: PaisSmall) => a.name.common < b.name.common ? -1 : 1));
+  }
 
+  getPais(): void {
+    this.form.get('pais')?.valueChanges
+      .subscribe((pais) => {
+        console.log(pais);
+      })
   }
 
   guardar() {

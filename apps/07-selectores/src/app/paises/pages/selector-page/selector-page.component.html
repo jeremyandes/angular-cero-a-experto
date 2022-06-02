@@ -3,7 +3,7 @@
 
 <form [formGroup]="form" autocomplete="off" (ngSubmit)="guardar()">
 
-    <div class="row">
+    <div class="row ">
         <div class="col-12 col-sm-6">
             <label class="form-label">Región:</label>
             <select class="form-control" formControlName="region">
@@ -16,6 +16,13 @@
             <select class="form-control" formControlName="pais">
                 <option selected disabled>Seleccione un País</option>
                 <option *ngFor="let pais of paises" [value]="pais.cca3">{{ pais.name.common }}</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-6" *ngIf="fronteras.length > 0">
+            <label class="form-label">Frontera:</label>
+            <select class="form-control" formControlName="pais">
+                <option selected disabled>Seleccione una Frontera</option>
+                <option *ngFor="let frontera of fronteras" [value]="">{{ '' }}</option>
             </select>
         </div>
     </div>

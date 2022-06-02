@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { RegionEnum } from '../enums/region.enum';
-import { Pais } from '../interfaces/pais.interface';
+import { Pais, PaisSmall } from '../interfaces/pais.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,13 @@ export class PaisesService {
   get regiones(): string[] { return this._regiones; }
   set regiones(regiones: string[]) { this._regiones = regiones; }
 
-  getPaisesPorRegion(region: string): Observable<Pais[]> {
-    return this.http.get<Pais[]>(`${this.baseUrl}/region/${region}/`, { params: this.httpParams });
+  getPaisesPorRegion(region: string): Observable<PaisSmall[]> {
+    return this.http.get<PaisSmall[]>(`${this.baseUrl}/region/${region}/`, { params: this.httpParams });
+  }
+
+  getPaisPorCodigo(codigo: string): Observable<any> | null {
+    return !codigo
+      ? of(null)
+      : this.http.get<any>(`${this.baseUrl}/alpha/${codigo}/`);
   }
 }
