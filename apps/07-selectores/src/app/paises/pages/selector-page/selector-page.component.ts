@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap, tap } from 'rxjs';
 import { Pais, PaisSmall } from '../../interfaces/pais.interface';
 import { PaisesService } from '../../services/paises.service';
@@ -14,10 +14,7 @@ export class SelectorPageComponent implements OnInit {
 
   regiones: string[] = [];
   paises: PaisSmall[] = [];
-  fronteras: any[] = [];
-
-  selectedRegion: string = '';
-  selectedPais: string = '';
+  fronteras: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -38,14 +35,17 @@ export class SelectorPageComponent implements OnInit {
     return this.fb.group({
       region: ['', Validators.required],
       pais: ['', Validators.required],
-      frontera: ['', Validators.required],
+      frontera: [''],
     });
   }
 
   getRegiones(): void {
     this.form.get('region')?.valueChanges
       .pipe(
-        tap(() => this.form.get('pais')?.reset('')),
+        tap(() => {
+          this.paises = [];
+          this.form.get('pais')?.reset('');
+        }),
         switchMap(region => this.paisesService.getPaisesPorRegion(region))
       )
       .subscribe(paises => this.paises = paises.sort((a: PaisSmall, b: PaisSmall) => a.name.common < b.name.common ? -1 : 1));
@@ -53,8 +53,19 @@ export class SelectorPageComponent implements OnInit {
 
   getPais(): void {
     this.form.get('pais')?.valueChanges
-      .subscribe((pais) => {
-        console.log(pais);
+      .pipe(
+        tap(() => {
+          this.fronteras = [];
+          this.form.get('frontera')?.reset('');
+        }),
+        switchMap(codigo => this.paisesService.getPaisPorCodigo(codigo))
+      )
+      .subscribe((resp: Pais[] | null) => {
+        if (resp) {
+          const pais: Pais = resp[0];
+          this.fronteras = pais.borders?.sort((a: string, b: string) => a < b ? -1 : 1) || [];
+          console.log(this.fronteras);
+        }
       })
   }
 

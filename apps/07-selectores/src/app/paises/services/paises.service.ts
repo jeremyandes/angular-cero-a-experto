@@ -26,9 +26,9 @@ export class PaisesService {
     return this.http.get<PaisSmall[]>(`${this.baseUrl}/region/${region}/`, { params: this.httpParams });
   }
 
-  getPaisPorCodigo(codigo: string): Observable<any> | null {
+  getPaisPorCodigo(codigo: string): Observable<Pais[] | null> {
     return !codigo
       ? of(null)
-      : this.http.get<any>(`${this.baseUrl}/alpha/${codigo}/`);
+      : this.http.get<Pais[]>(`${this.baseUrl}/alpha/${codigo}/`);
   }
 }
