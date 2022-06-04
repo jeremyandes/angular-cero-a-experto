@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
+import { combineLatest, map, Observable, of, tap } from 'rxjs';
 import { RegionEnum } from '../enums/region.enum';
 import { Pais, PaisSmall } from '../interfaces/pais.interface';
 
@@ -11,7 +11,7 @@ export class PaisesService {
   private _regiones: string[] = [];
   private baseUrl: string = 'https://restcountries.com/v3.1/';
   private httpParams: HttpParams = new HttpParams()
-    .set('fields', `name,cca3`);
+    .set('fields', `name,cca3,borders`);
 
   constructor(
     private http: HttpClient,
@@ -30,5 +30,20 @@ export class PaisesService {
     return !codigo
       ? of(null)
       : this.http.get<Pais[]>(`${this.baseUrl}/alpha/${codigo}/`);
+  }
+
+  getPaisPorCodigoSmall(codigo: string): Observable<PaisSmall> {
+    return this.http.get<PaisSmall>(`${this.baseUrl}/alpha/${codigo}/`, { params: this.httpParams });
+  }
+
+  getPaisesPorCodigos(borders: string[]): Observable<PaisSmall[]> {
+    if (!borders) {
+      return of([]);
+    }
+
+    const peticiones: Observable<PaisSmall>[] = [];
+    borders.forEach(codigo => peticiones.push(this.getPaisPorCodigoSmall(codigo)));
+
+    return combineLatest(peticiones);
   }
 }
