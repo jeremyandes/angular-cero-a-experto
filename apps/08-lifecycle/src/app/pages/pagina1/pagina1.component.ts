@@ -10,41 +10,44 @@ export class Pagina1Component implements OnInit, OnChanges, DoCheck,
   AfterContentInit, AfterContentChecked, AfterViewInit,
   AfterViewChecked, OnDestroy {
   componentTitle: string = 'pagina1.component';
+  nombre: string = 'Jeremy';
 
   constructor() {
-    console.log('Constructor', this.componentTitle);
+    console.warn('Constructor');
   }
 
   ngOnInit(): void {
-    console.log(this.componentTitle, '<< ngOnInit >>');
+    console.log('<< ngOnInit >>');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.componentTitle, '<< ngOnChanges >>', changes);
+    console.log('<< ngOnChanges >>', changes);
   }
 
   ngDoCheck(): void {
-    console.log(this.componentTitle, '<< ngDoCheck >>');
+    console.log('<< ngDoCheck >>');
   }
 
   ngAfterContentInit(): void {
-    console.log(this.componentTitle, '<< ngAfterContentInit >>');
+    console.log('<< ngAfterContentInit >>');
   }
 
   ngAfterContentChecked(): void {
-    console.log(this.componentTitle, '<< ngAfterContentChecked >>');
+    console.log('<< ngAfterContentChecked >>');
   }
 
   ngAfterViewInit(): void {
-    console.log(this.componentTitle, '<< ngAfterViewInit >>');
+    console.log('<< ngAfterViewInit >>');
   }
 
   ngAfterViewChecked(): void {
-    console.log(this.componentTitle, '<< ngAfterViewChecked >>');
+    console.log('<< ngAfterViewChecked >>');
   }
 
   ngOnDestroy(): void {
-    console.log(this.componentTitle, '<< ngOnDestroy >>');
+    console.error('<< ngOnDestroy >>');
   }
+
+  guardar() {}
 
 }
