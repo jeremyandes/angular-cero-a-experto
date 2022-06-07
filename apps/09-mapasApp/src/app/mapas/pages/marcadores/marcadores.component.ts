@@ -15,7 +15,7 @@ interface CustomMarker {
       height: 100%;
     }
 
-    .list-group{
+    .list-group, .btn-group{
       position: fixed;
       top: 20px;
       right: 20px;
@@ -36,7 +36,7 @@ export class MarcadoresComponent implements AfterViewInit {
 
   markers: CustomMarker[] = [];
 
-  constructor() { }
+  constructor() {}
 
   ngAfterViewInit(): void {
     this.map = new mapboxgl.Map({
@@ -60,7 +60,7 @@ export class MarcadoresComponent implements AfterViewInit {
     const color = this.randomColor;
     const nuevoMarker = new mapboxgl.Marker({
       draggable: true,
-      color: this.randomColor
+      color,
     })
       .setLngLat(this.centerMap)
       .addTo(this.map);
@@ -68,8 +68,10 @@ export class MarcadoresComponent implements AfterViewInit {
     this.markers.push({ color, marker: nuevoMarker });
   }
 
-  flyTo() {
-
+  flyTo(marker: mapboxgl.Marker) {
+    this.map.flyTo({
+      center: marker.getLngLat()
+    })
   }
 
   get randomColor(): string { return "#xxxxxx".replace(/x/g, y => (Math.random() * 16 | 0).toString(16)); }
