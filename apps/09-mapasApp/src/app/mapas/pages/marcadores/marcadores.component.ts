@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 
 interface CustomMarker {
@@ -28,7 +28,7 @@ interface CustomMarker {
     }
   `]
 })
-export class MarcadoresComponent implements AfterViewInit {
+export class MarcadoresComponent implements AfterViewInit, OnDestroy {
   private map!: mapboxgl.Map;
 
   @ViewChild('mapa') mapContainer!: ElementRef;
@@ -42,6 +42,11 @@ export class MarcadoresComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
     this.loadMarkers();
+    this.onDragEndMarker();
+  }
+
+  ngOnDestroy(): void {
+    this.map.off('dragend', () => { });
   }
 
   private initMap() {
@@ -66,6 +71,9 @@ export class MarcadoresComponent implements AfterViewInit {
     });
   }
 
+  private onDragEndMarker() {
+    this.markers.forEach(({ marker }) => marker!.on('dragend', () => this.saveMarkersLocalStorage()));
+  }
 
   private get randomColor(): string { return "#xxxxxx".replace(/x/g, y => (Math.random() * 16 | 0).toString(16)); }
 
@@ -97,6 +105,12 @@ export class MarcadoresComponent implements AfterViewInit {
       .addTo(this.map);
 
     this.markers.push({ color, marker: nuevoMarker });
+    this.saveMarkersLocalStorage();
+  }
+
+  borrarMarker(index: number) {
+    this.markers[index].marker?.remove();
+    this.markers.splice(index, 1);
     this.saveMarkersLocalStorage();
   }
 
