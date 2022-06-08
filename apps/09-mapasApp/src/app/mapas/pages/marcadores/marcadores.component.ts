@@ -40,7 +40,7 @@ export class MarcadoresComponent implements AfterViewInit, OnDestroy {
   constructor() { }
 
   ngAfterViewInit(): void {
-    this.initMap();
+    this.map = this.initMap();
     this.loadMarkers();
     this.onDragEndMarker();
   }
@@ -50,7 +50,7 @@ export class MarcadoresComponent implements AfterViewInit, OnDestroy {
   }
 
   private initMap() {
-    this.map = new mapboxgl.Map({
+    return new mapboxgl.Map({
       container: this.mapContainer.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: this.centerMap,
