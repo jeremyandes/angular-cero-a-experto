@@ -10,38 +10,29 @@ import { GraficasService } from '../../services/graficas.service';
   ]
 })
 export class DonaHttpComponent implements OnInit {
+  labels: string[] = ['Ventas', 'Compras', 'Exportaciones'];
 
-  labels: string[] = [];
-  dataSets: MultiDatasetInterface[] = [];
-  basicData!: BasicDataInterface;
+  dataSets: MultiDatasetInterface[] = [
+    {
+      data: [65, 59, 80],
+      backgroundColor: ['#b3e0ff', '#99ffcc', '#ffc2b3'],
+    },
+  ];
+
+  loading: boolean = true;
 
   constructor(private graficasService: GraficasService) { }
 
   ngOnInit(): void {
     this.graficasService.getDataUsers().subscribe({
-      next: (resp) => console.log(resp),
+      next: (data) => {
+        this.loading = true;
+        this.labels = Object.keys(data);
+        this.dataSets[0].data = [...Object.values(data)] as number[];
+      },
       error: (err) => console.error(err),
+      complete: () => this.loading = false,
     })
-    // this.basicData = this.updateBasicData();
-  }
-
-  updateBasicData(): BasicDataInterface {
-    return {
-      labels: this.labels,
-      datasets: this.dataSets,
-    }
-  }
-
-  randomData() {
-    this.dataSets.forEach((dataset: MultiDatasetInterface) => {
-      dataset.data = [
-        (Math.random() * 100),
-        (Math.random() * 100),
-        (Math.random() * 100),
-      ]
-    });
-
-    this.basicData = this.updateBasicData();
   }
 
 }
