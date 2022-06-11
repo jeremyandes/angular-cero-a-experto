@@ -8,6 +8,8 @@ import { DatasetInterface } from '../../interfaces/dataset.interface';
   ]
 })
 export class BarrasDobleComponent {
+  labels: string[] = ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'];
+
   dataSets: DatasetInterface[] = [
     {
       label: 'Ventas',
@@ -25,8 +27,6 @@ export class BarrasDobleComponent {
       data: [10, 15, 25, 20, 60, 43, 85, 92]
     }
   ];
-
-  labels: string[] = ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'];
 
   constructor() { }
 

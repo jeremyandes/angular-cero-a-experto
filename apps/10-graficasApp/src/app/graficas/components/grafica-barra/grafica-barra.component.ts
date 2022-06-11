@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BasicDataInterface } from '../../interfaces/basic-data.interface';
+import { DatasetInterface } from '../../interfaces/dataset.interface';
 
 @Component({
   selector: 'app-grafica-barra',
@@ -10,11 +11,11 @@ import { BasicDataInterface } from '../../interfaces/basic-data.interface';
 export class GraficaBarraComponent implements OnInit {
 
   @Input() labels!: string[];
-  @Input() dataSets!: any;
+  @Input() dataSets!: DatasetInterface[];
   @Input() isHorizontal: boolean = false;
-  horizontalOptions: any;
 
   basicData!: BasicDataInterface;
+  horizontalOptions: any;
 
   constructor() { }
 
@@ -61,7 +62,7 @@ export class GraficaBarraComponent implements OnInit {
   }
 
   randomData() {
-    this.dataSets.forEach((dataset: any) => {
+    this.dataSets.forEach((dataset: DatasetInterface) => {
       dataset.data = [
         (Math.random() * 100),
         (Math.random() * 100),

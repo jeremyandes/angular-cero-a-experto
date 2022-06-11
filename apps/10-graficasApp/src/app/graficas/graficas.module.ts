@@ -8,6 +8,7 @@ import { DonaComponent } from './pages/dona/dona.component';
 import { DonaHttpComponent } from './pages/dona-http/dona-http.component';
 import { GraficaBarraComponent } from './components/grafica-barra/grafica-barra.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { GraficaDonaComponent } from './components/grafica-dona/grafica-dona.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PrimengModule } from '../primeng/primeng.module';
     BarrasDobleComponent,
     DonaComponent,
     DonaHttpComponent,
-    GraficaBarraComponent
+    GraficaBarraComponent,
+    GraficaDonaComponent
   ],
   imports: [
     CommonModule,
