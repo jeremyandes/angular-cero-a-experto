@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { RippleModule } from 'primeng/ripple';
 
 
 
@@ -17,6 +18,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     ButtonModule,
     ChartModule,
     TabMenuModule,
+    RippleModule,
   ]
 })
 export class PrimengModule { }

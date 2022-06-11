@@ -1,1 +1,15 @@
-<p>grafica-barra works!</p>
+<div *ngIf="!isHorizontal" class="py-5">
+    <div class="card pb-2 w-full">
+        <h2 class="text-center">{{ isHorizontal ? 'Horizontal' : 'Vertical'}}</h2>
+        <p-chart type="bar" [data]="basicData"></p-chart>
+    </div>
+    <button type="button" pButton pRipple (click)="randomData()">Actualizar</button>
+</div>
+
+<div *ngIf="isHorizontal" class="py-5">
+    <div class="card pb-2 w-full">
+        <h2 class="text-center">{{ isHorizontal ? 'Horizontal' : 'Vertical'}}</h2>
+        <p-chart type="bar" [data]="basicData" [options]="horizontalOptions"></p-chart>
+    </div>
+    <button type="button" pButton pRipple (click)="randomData()">Actualizar</button>
+</div>
