@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { PrimengModule } from './primeng/primeng.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MenuComponent } from './shared/menu/menu.component';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PrimengModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
