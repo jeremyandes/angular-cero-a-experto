@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BasicDataInterface } from '../../interfaces/basic-data.interface';
 
 @Component({
   selector: 'app-grafica-barra',
@@ -8,14 +9,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GraficaBarraComponent implements OnInit {
 
+  @Input() labels!: string[];
+  @Input() dataSets!: any;
   @Input() isHorizontal: boolean = false;
-  @Input() basicData: any;
-
   horizontalOptions: any;
+
+  basicData!: BasicDataInterface;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.basicData = this.updateBasicData();
+
     if (this.isHorizontal) {
       this.horizontalOptions = {
         indexAxis: 'y',
@@ -48,56 +53,28 @@ export class GraficaBarraComponent implements OnInit {
     }
   }
 
-  randomData() {
-    const { labels } = this.basicData;
+  updateBasicData(): BasicDataInterface {
+    return {
+      labels: this.labels,
+      datasets: this.dataSets,
+    }
+  }
 
-    this.basicData = {
-      labels,
-      datasets: [
-        {
-          label: 'Ventas',
-          backgroundColor: '#b3e0ff',
-          data: [
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-          ]
-        },
-        {
-          label: 'Compras',
-          backgroundColor: '#99ffcc',
-          data: [
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-          ]
-        },
-        {
-          label: 'Exportaciones',
-          backgroundColor: '#ffc2b3',
-          data: [
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-            (Math.random() * 100),
-          ]
-        }
+  randomData() {
+    this.dataSets.forEach((dataset: any) => {
+      dataset.data = [
+        (Math.random() * 100),
+        (Math.random() * 100),
+        (Math.random() * 100),
+        (Math.random() * 100),
+        (Math.random() * 100),
+        (Math.random() * 100),
+        (Math.random() * 100),
+        (Math.random() * 100),
       ]
-    };
+    });
+
+    this.basicData = this.updateBasicData();
   }
 
 }
