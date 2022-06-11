@@ -1,1 +1,23 @@
-<p>barras works!</p>
+<div class="card py-5 w-11">
+    <h2 class="text-center">Vertical</h2>
+    <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+</div>
+<hr>
+
+<div class="card py-5 w-11">
+    <h2 class="text-center">Horizontal</h2>
+    <p-chart type="bar" [data]="basicData" [options]="horizontalOptions"></p-chart>
+</div>
+<hr>
+
+<div class="card py-5 w-11">
+    <h2 class="text-center">Multi Axis</h2>
+    <p-chart type="bar" [data]="multiAxisData" [options]="multiAxisOptions"></p-chart>
+</div>
+<hr>
+
+<div class="card py-5 w-11">
+    <h2 class="text-center">Stacked</h2>
+    <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
+</div>
+<hr>

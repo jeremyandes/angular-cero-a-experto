@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // PrimNG Modules
+import { ChartModule } from 'primeng/chart';
 import { TabMenuModule } from 'primeng/tabmenu';
 
 
@@ -12,6 +13,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     CommonModule
   ],
   exports: [
+    ChartModule,
     TabMenuModule,
   ]
 })
