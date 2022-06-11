@@ -2,4 +2,4 @@
     <h2 class="text-center">Doughnut</h2>
     <p-chart type="doughnut" [data]="basicData"></p-chart>
 </div>
-<button type="button" pButton pRipple (click)="randomData()">Actualizar</button>
+<button *ngIf="!disableUpdate" type="button" pButton pRipple (click)="randomData()">Actualizar</button>

@@ -25,10 +25,10 @@ export class DonaHttpComponent implements OnInit {
 
   ngOnInit(): void {
     this.graficasService.getDataUsers().subscribe({
-      next: (data) => {
+      next: ({ labels, values }) => {
         this.loading = true;
-        this.labels = Object.keys(data);
-        this.dataSets[0].data = [...Object.values(data)] as number[];
+        this.labels = labels;
+        this.dataSets[0].data = values;
       },
       error: (err) => console.error(err),
       complete: () => this.loading = false,

@@ -16,6 +16,7 @@ export class GraficaDonaComponent implements OnInit {
 
   @Input() labels!: string[];
   @Input() dataSets!: MultiDatasetInterface[];
+  @Input() disableUpdate?: boolean;
 
   basicData!: BasicDataInterface;
 

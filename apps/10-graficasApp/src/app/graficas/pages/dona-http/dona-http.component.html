@@ -1,4 +1,4 @@
 <div *ngIf="loading" class="flex justify-content-center align-items-center pt-8">
     <p-progressSpinner></p-progressSpinner>
 </div>
-<app-grafica-dona *ngIf="!loading" [labels]="labels" [dataSets]="dataSets"></app-grafica-dona>
+<app-grafica-dona *ngIf="!loading" [labels]="labels" [dataSets]="dataSets" [disableUpdate]="true"></app-grafica-dona>

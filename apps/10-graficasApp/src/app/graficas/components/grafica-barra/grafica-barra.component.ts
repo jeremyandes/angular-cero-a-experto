@@ -13,6 +13,7 @@ export class GraficaBarraComponent implements OnInit {
   @Input() labels!: string[];
   @Input() dataSets!: DatasetInterface[];
   @Input() isHorizontal: boolean = false;
+  @Input() disableUpdate?: boolean;
 
   basicData!: BasicDataInterface;
   horizontalOptions: any;

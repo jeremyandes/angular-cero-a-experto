@@ -3,7 +3,7 @@
         <h2 class="text-center">{{ isHorizontal ? 'Horizontal' : 'Vertical'}}</h2>
         <p-chart type="bar" [data]="basicData"></p-chart>
     </div>
-    <button type="button" pButton pRipple (click)="randomData()">Actualizar</button>
+    <button *ngIf="!disableUpdate" type="button" pButton pRipple (click)="randomData()">Actualizar</button>
 </div>
 
 <div *ngIf="isHorizontal" class="py-5">
@@ -11,5 +11,5 @@
         <h2 class="text-center">{{ isHorizontal ? 'Horizontal' : 'Vertical'}}</h2>
         <p-chart type="bar" [data]="basicData" [options]="horizontalOptions"></p-chart>
     </div>
-    <button type="button" pButton pRipple (click)="randomData()">Actualizar</button>
+    <button *ngIf="!disableUpdate" type="button" pButton pRipple (click)="randomData()">Actualizar</button>
 </div>
