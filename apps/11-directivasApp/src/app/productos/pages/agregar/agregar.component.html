@@ -10,13 +10,13 @@
             <input type="text" class="form-control" formControlName="nombre">
         </div>
         <div class="col-auto" *ngIf="controlHasErrors('nombre')">
-            <span errorMsg color="text-success" mensaje="Campo requerido"></span>
+            <span errorMsg color="green" [mensaje]="errorString"></span>
         </div>
     </div>
 
     <div class="row pt-3">
         <div class="col">
-            <button class="btn btn-outline-dark">
+            <button class="btn btn-outline-dark" (click)="cambiarError()">
                 Guardar
             </button>
         </div>

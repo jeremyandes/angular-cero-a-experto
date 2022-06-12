@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[errorMsg]'
 })
-export class ErrorMsgDirective implements OnInit {
+export class ErrorMsgDirective implements OnInit, OnChanges {
   htmlElement: ElementRef<HTMLElement>;
-  @Input() color: string = 'text-danger';
+  @Input() color: string = 'red';
   @Input() mensaje: string = 'Campo requerido';
 
   constructor(private el: ElementRef<HTMLElement>) {
@@ -17,9 +17,17 @@ export class ErrorMsgDirective implements OnInit {
     this.setMensaje();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+
+    const mensaje = changes['mensaje'].currentValue;
+    this.htmlElement.nativeElement.innerText = mensaje;
+
+    console.log(changes);
+  }
+
   setColor(): void {
     const el: HTMLElement = this.htmlElement.nativeElement;
-    el.classList.add(this.color);
+    el.style.color = this.color;
     el.classList.add('form-text');
   }
 

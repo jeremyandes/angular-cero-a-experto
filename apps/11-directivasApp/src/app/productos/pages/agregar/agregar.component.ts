@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AgregarComponent implements OnInit {
   form!: FormGroup;
+  errorString: string = 'Campo requerido';
 
   constructor(private fb: FormBuilder) { }
 
@@ -22,4 +23,5 @@ export class AgregarComponent implements OnInit {
     return this.form.get(control)?.invalid;
   }
 
+  cambiarError() { this.errorString = 'Error cambiado'; }
 }
