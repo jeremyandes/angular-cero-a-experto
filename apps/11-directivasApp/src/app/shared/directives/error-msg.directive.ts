@@ -10,15 +10,13 @@ export class ErrorMsgDirective implements OnInit, OnChanges {
   htmlElement: ElementRef<HTMLElement>;
 
   @Input() set color(value: string) {
-    const el: HTMLElement = this.htmlElement.nativeElement;
-    el.style.color = value;
-    this._color = value
+    this._color = value;
+    this.setColor();
   }
 
   @Input() set mensaje(value: string) {
-    const el: HTMLElement = this.htmlElement.nativeElement;
-    el.innerText = value;
-    this._mensaje = value
+    this._mensaje = value;
+    this.setMensaje();
   }
 
   constructor(private el: ElementRef<HTMLElement>) {
@@ -29,8 +27,9 @@ export class ErrorMsgDirective implements OnInit, OnChanges {
     // console.log(this.color); //imprime 'undefined'
     // console.log(this.mensaje); //imprime 'undefined'
 
-    // this.setColor();
-    // this.setMensaje();
+    this.setColor();
+    this.setMensaje();
+    this.setClase();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,16 +50,16 @@ export class ErrorMsgDirective implements OnInit, OnChanges {
     this.setClase();
   }
 
-  // setColor(): void {
-  //   const el: HTMLElement = this.htmlElement.nativeElement;
-  //   el.style.color = this.color;
-  //   el.classList.add('form-text');
-  // }
+  setColor(): void {
+    const el: HTMLElement = this.htmlElement.nativeElement;
+    el.style.color = this._color;
+    el.classList.add('form-text');
+  }
 
-  // setMensaje(): void {
-  //   const el: HTMLElement = this.htmlElement.nativeElement;
-  //   el.innerText = this.mensaje;
-  // }
+  setMensaje(): void {
+    const el: HTMLElement = this.htmlElement.nativeElement;
+    el.innerText = this._mensaje;
+  }
 
   setClase(): void {
     const el: HTMLElement = this.htmlElement.nativeElement;
