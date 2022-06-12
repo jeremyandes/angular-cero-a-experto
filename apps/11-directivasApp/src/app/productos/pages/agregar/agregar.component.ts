@@ -23,7 +23,7 @@ export class AgregarComponent implements OnInit {
   }
 
   controlHasErrors(control: string): boolean | undefined {
-    return this.form.get(control)?.invalid;
+    return this.form.get(control)?.invalid || false;
   }
 
   cambiarError() { this.errorString = Number(Math.random()).toString(); }

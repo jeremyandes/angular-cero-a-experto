@@ -9,8 +9,8 @@
         <div class="col-auto">
             <input type="text" class="form-control" formControlName="nombre">
         </div>
-        <div class="col-auto" *ngIf="controlHasErrors('nombre')">
-            <span errorMsg [color]="color" [mensaje]="errorString"></span>
+        <div class="col-auto">
+            <span errorMsg [color]="color" [mensaje]="errorString" [valido]="controlHasErrors('nombre')!"></span>
         </div>
     </div>
 
