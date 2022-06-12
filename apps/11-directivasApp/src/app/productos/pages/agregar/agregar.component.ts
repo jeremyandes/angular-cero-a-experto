@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar',
@@ -7,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class AgregarComponent implements OnInit {
+  form!: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      nombre: ['', [Validators.required]],
+    })
+  }
+
+  controlHasErrors(control: string): boolean | undefined {
+    return this.form.get(control)?.invalid && this.form.get(control)?.touched;
   }
 
 }
