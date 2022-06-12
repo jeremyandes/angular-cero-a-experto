@@ -10,10 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AgregarComponent implements OnInit {
   form!: FormGroup;
   errorString: string = 'Campo requerido';
+  color: string = '';
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.cambiarColor();
+
     this.form = this.fb.group({
       nombre: ['', [Validators.required]],
     })
@@ -23,5 +26,6 @@ export class AgregarComponent implements OnInit {
     return this.form.get(control)?.invalid;
   }
 
-  cambiarError() { this.errorString = 'Error cambiado'; }
+  cambiarError() { this.errorString = Number(Math.random()).toString(); }
+  cambiarColor() { this.color = "#xxxxxx".replace(/x/g, y => (Math.random() * 16 | 0).toString(16)); }
 }
