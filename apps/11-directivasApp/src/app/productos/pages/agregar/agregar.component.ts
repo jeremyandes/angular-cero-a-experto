@@ -19,7 +19,7 @@ export class AgregarComponent implements OnInit {
   }
 
   controlHasErrors(control: string): boolean | undefined {
-    return this.form.get(control)?.invalid && this.form.get(control)?.touched;
+    return this.form.get(control)?.invalid;
   }
 
 }
