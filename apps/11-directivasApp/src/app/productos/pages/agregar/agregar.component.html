@@ -26,6 +26,14 @@
     </div>
 </form>
 
+<div class="row mt-5" *customIf="form.valid">
+    <div class="col">
+        <div class="alert alert-primary">
+            Todo OK!
+        </div>
+    </div>
+</div>
+
 <hr>
 
 <app-form-properties [form]="form"></app-form-properties>
