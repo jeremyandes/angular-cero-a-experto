@@ -1,0 +1,39 @@
+<h1>Agregar Producto</h1>
+<hr>
+
+<form [formGroup]="form">
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+            <label class="col-form-label">Nombre:</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" formControlName="nombre">
+        </div>
+        <div class="col-auto">
+            <span errorMsg [color]="color" [mensaje]="errorString" [valido]="controlHasErrors('nombre')!"></span>
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col">
+            <button class="btn btn-outline-dark" (click)="cambiarError()">
+                Guardar
+            </button>
+            <button class="btn btn-outline-dark mx-3" (click)="cambiarColor()">
+                Cambiar Color
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="row mt-5" *customIf="form.valid">
+    <div class="col">
+        <div class="alert alert-primary">
+            Todo OK!
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<app-form-properties [form]="form"></app-form-properties>
