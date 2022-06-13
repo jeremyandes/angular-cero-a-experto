@@ -5,6 +5,9 @@ const dotenv = require('dotenv');
 // Crear el servidor/aplicación de Express
 const app = express();
 
+// Directorio Público
+app.use(express.static('public'));
+
 // CORS
 app.use(cors());
 
