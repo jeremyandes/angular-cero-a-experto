@@ -1,20 +1,28 @@
-const { response } = require('express');
+const { request, response } = require('express');
 
-const newUser = (req, res = response) => {
+const newUser = (req = request, res = response) => {
+    console.log(req.body);
+    const { name, email, password } = req.body;
+    console.log(name, email, password);
+
     return res.json({
         ok: true,
         message: 'Crear usuario /new',
     });
 }
 
-const loginUser = (req, res = response) => {
+const loginUser = (req = request, res = response) => {
+    console.log(req.body);
+    const { email, password } = req.body;
+    console.log(email, password);
+
     return res.json({
         ok: true,
         message: 'Login del usuario /',
     });
 }
 
-const renewToken = (req, res = response) => {
+const renewToken = (req = request, res = response) => {
     return res.json({
         ok: true,
         message: '/Renew',
