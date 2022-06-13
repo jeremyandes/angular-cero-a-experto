@@ -1,9 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
+const { dbConnection } = require('./db/config');
+
+// Variables de entorno
+require('dotenv').config();
 
 // Crear el servidor/aplicación de Express
 const app = express();
+
+// Base de datos
+dbConnection();
 
 // Directorio Público
 app.use(express.static('public'));
@@ -13,9 +19,6 @@ app.use(cors());
 
 // Lectura y parseo del body
 app.use(express.json());
-
-// Variables de Entorno
-dotenv.config();
 
 // Rutas
 app.use('/api/auth', require('./routes/auth.routes'));
