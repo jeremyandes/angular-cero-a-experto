@@ -99,12 +99,13 @@ const loginUser = async (req = request, res = response) => {
 }
 
 const renewToken = (req = request, res = response) => {
-    const { uid, name } = req;
+    const { uid, name, newToken } = req;
 
     return res.json({
         ok: true,
         uid,
         name,
+        newToken,
     });
 }
 
