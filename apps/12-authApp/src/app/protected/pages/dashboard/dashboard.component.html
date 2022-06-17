@@ -4,8 +4,6 @@
 <p>Esta página sólo funciona el usuario está autenticado</p>
 
 <h4>User info</h4>
-<pre>
-    ...
-</pre>
+<pre>{{ user | json }}</pre>
 
 <button (click)="logout()">Logout</button>

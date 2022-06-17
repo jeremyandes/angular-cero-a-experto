@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -31,11 +32,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.form.value, this.form.valid);
     const { email, password } = this.form.value;
 
     this.authService.login(email, password).subscribe({
-      next: (resp) => console.log(resp),
+      next: (resp) => {
+        resp
+          ? this.router.navigate(['/dashboard'])
+          : throwError(() => new Error(`Ok status is: <${resp}>`));
+      },
       error: (error) => console.error(error),
     });
 
