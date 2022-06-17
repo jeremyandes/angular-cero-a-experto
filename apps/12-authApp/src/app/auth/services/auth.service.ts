@@ -30,6 +30,8 @@ export class AuthService {
       );
   }
 
+  logout() { localStorage.removeItem('auth-app-token'); }
+
   tokenValidation(): Observable<boolean> {
     const url = `${this.baseUrl}/auth/renew`;
     const headers = new HttpHeaders()
