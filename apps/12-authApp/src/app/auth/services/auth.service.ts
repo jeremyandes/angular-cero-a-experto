@@ -24,26 +24,35 @@ export class AuthService {
 
     return this.http.post<AuthResponse>(url, body)
       .pipe(
-        tap(resp => {
-          if (resp.ok) {
-            localStorage.setItem('auth-app-token', resp.token!);
-            this.user = {
-              name: resp.name!,
-              uid: resp.uid!,
-            }
-          }
-        }),
+        tap(resp => this.setAuthAppToken(resp)),
         map(isValid => isValid.ok),
         catchError((e) => of(e.error.message)),
       );
   }
 
-  tokenValidation() {
+  tokenValidation(): Observable<boolean> {
     const url = `${this.baseUrl}/auth/renew`;
     const headers = new HttpHeaders()
       .set('x-token', localStorage.getItem('auth-app-token') || '');
 
-    return this.http.get(url, { headers });
+    return this.http.get<AuthResponse>(url, { headers })
+      .pipe(
+        map(resp => {
+          this.setAuthAppToken(resp);
+          return resp.ok;
+        }),
+        catchError(() => of(false)),
+      );
+  }
+
+  private setAuthAppToken(value: AuthResponse) {
+    if (value.ok) {
+      localStorage.setItem('auth-app-token', (value.token || value.newToken)!);
+      this.user = {
+        name: value.name!,
+        uid: value.uid!,
+      }
+    }
   }
 
 }
