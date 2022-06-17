@@ -18,6 +18,18 @@ export class AuthService {
   get user(): User { return { ...this._user }; }
   set user(user: User) { this._user = user; }
 
+  register(name: string, email: string, password: string) {
+    const url = `${this.baseUrl}/auth/new`;
+    const body = { name, email, password };
+
+    return this.http.post<AuthResponse>(url, body)
+      .pipe(
+        tap(resp => this.setAuthAppToken(resp)),
+        map(isValid => isValid.ok),
+        catchError((e) => of(e.error.message)),
+      );
+  }
+
   login(email: string, password: string): Observable<boolean> {
     const url = `${this.baseUrl}/auth`;
     const body = { email, password };

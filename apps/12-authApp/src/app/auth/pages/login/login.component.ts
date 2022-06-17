@@ -47,12 +47,6 @@ export class LoginComponent implements OnInit {
       },
       error: (error) => console.error(error),
     });
-
-    // this.router.navigateByUrl('/dashboard');
   }
-
-  // login() {
-  //   this.authService.tokenValidation().subscribe(console.log);
-  // }
 
 }
