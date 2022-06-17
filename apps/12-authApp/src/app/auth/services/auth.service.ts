@@ -65,6 +65,7 @@ export class AuthService {
       this.user = {
         name: value.name!,
         uid: value.uid!,
+        email: value.email!,
       }
     }
   }

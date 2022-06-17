@@ -15,15 +15,16 @@ const validarJWT = async (req = request, res = response, next) => {
 
     try {
 
-        const { uid, name } = jwt.verify(token, process.env.SECRET_JWT_SEED);
-        console.log('JWT Renew Payload', { uid, name });
+        const { uid, name, email } = jwt.verify(token, process.env.SECRET_JWT_SEED);
+        console.log('JWT Renew Payload', { uid, name, email });
 
         // Creo un nuevo token
-        const newToken = await generateJWT(uid, name);
+        const newToken = await generateJWT(uid, name, email);
 
         // Envío la info a la request para capturarla en el controller
         req.uid = uid;
         req.name = name;
+        req.email = email;
         req.newToken = newToken;
 
     } catch (error) {
