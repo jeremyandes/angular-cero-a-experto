@@ -22,7 +22,7 @@ router.post('/', [
 ], loginUser);
 
 // Validar y revalidar token
-router.post('/renew', [
+router.get('/renew', [
     validarJWT,
 ], renewToken);
 

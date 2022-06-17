@@ -22,7 +22,7 @@ export class DashboardComponent {
   get user(): User {
     return this.authService.user;
   }
-
+  
   logout() {
     this.router.navigateByUrl('/auth/login');
   }
