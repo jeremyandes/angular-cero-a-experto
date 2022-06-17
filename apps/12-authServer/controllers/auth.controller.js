@@ -26,7 +26,7 @@ const newUser = async (req = request, res = response) => {
         dbUser.password = bcrypt.hashSync(password, salt);
 
         // Generar el JWT
-        const token = await generateJWT(dbUser.uid, name);
+        const token = await generateJWT(dbUser.id, name);
 
         // Crear usuario en la DB
         await dbUser.save();
