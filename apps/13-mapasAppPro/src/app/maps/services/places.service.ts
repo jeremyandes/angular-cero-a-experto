@@ -39,7 +39,11 @@ export class PlacesService {
   }
 
   getPlacesByQuery(query: string = '') {
-    if (!query) { return; }
+    if (!query) {
+      this.isLoadingPlaces = false;
+      this.places = [];
+      return;
+    }
     if (!this.useLocation) { throw new Error('Error en geolocalización'); }
 
     this.isLoadingPlaces = true;
@@ -50,8 +54,6 @@ export class PlacesService {
       }
     })
       .subscribe(resp => {
-        console.log(resp.features);
-
         this.places = resp.features;
         this.isLoadingPlaces = false;
       });
