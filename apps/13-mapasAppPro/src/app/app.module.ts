@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapsModule } from './maps/maps.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -13,6 +15,7 @@ import { MapsModule } from './maps/maps.module';
     BrowserModule,
     AppRoutingModule,
     MapsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
