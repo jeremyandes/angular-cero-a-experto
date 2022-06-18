@@ -1,6 +1,7 @@
+import { Feature, PlacesResponse } from '../interfaces/places.interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Feature, PlacesResponse } from '../interfaces/places.interfaces';
+import { PlacesApiClient } from '../api';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class PlacesService {
 
   constructor(
     private http: HttpClient,
+    private placesApi: PlacesApiClient,
   ) {
     this.getUserLocation();
   }
@@ -38,10 +40,15 @@ export class PlacesService {
 
   getPlacesByQuery(query: string = '') {
     if (!query) { return; }
+    if (!this.useLocation) { throw new Error('Error en geolocalización'); }
 
     this.isLoadingPlaces = true;
 
-    this.http.get<PlacesResponse>(`https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?limit=5&proximity=-57.532310079476204%2C-38.0284289294272&types=place%2Cpostcode%2Caddress&language=es&access_token=pk.eyJ1IjoiamVyZW15YW5kZXMiLCJhIjoiY2w0MXcydjlnMjhwczNqbzJkaG5sbGczYSJ9.0hZyYK8dDvPsMoPVcmcryg`)
+    this.placesApi.get<PlacesResponse>(`${query}.json`, {
+      params: {
+        proximity: this.useLocation.join(',')
+      }
+    })
       .subscribe(resp => {
         console.log(resp.features);
 
