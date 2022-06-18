@@ -27,7 +27,7 @@ export class MapViewComponent implements AfterViewInit {
 
     const popup = new Popup()
       .setHTML(`
-        <div class="p-2">
+        <div class="p-1">
           <h6>Aquí estoy</h6>
           <span>Estoy en este lugar del mundo</span>
         </div>
