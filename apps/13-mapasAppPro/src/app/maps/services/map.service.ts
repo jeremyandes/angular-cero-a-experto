@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { DirectionsApiClient } from '../api';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
 import { Feature } from '../interfaces/places.interfaces';
@@ -10,6 +10,7 @@ import { Feature } from '../interfaces/places.interfaces';
 export class MapService {
   private _map?: Map;
   private markers: Marker[] = [];
+  private baseSource: string = 'RouteString';
 
   constructor(
     private directionsApi: DirectionsApiClient,
@@ -77,7 +78,7 @@ export class MapService {
   }
 
   private drawPolyline(route: Route) {
-    if (!route.distance) { return; }
+    if (!route) { return; }
     if (!this._map) { throw new Error('Mapa no inicializado'); }
 
     console.log({ distance: route.distance / 1000, duration: route.duration / 60 });
@@ -88,5 +89,44 @@ export class MapService {
     coords.forEach(([lng, lat]) => bounds.extend([lng, lat]));
 
     this._map?.fitBounds(bounds, { padding: 200 });
+
+    // Polyline
+    const sourceData: AnySourceData = {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: coords,
+            }
+          }
+        ]
+      }
+    }
+
+    // Limpiar ruta previa
+    if (this._map.getLayer(this.baseSource)) {
+      this._map.removeLayer(this.baseSource);
+      this._map.removeSource(this.baseSource);
+    }
+
+    this._map.addSource(this.baseSource, sourceData);
+    this._map.addLayer({
+      id: this.baseSource,
+      type: 'line',
+      source: this.baseSource,
+      layout: {
+        'line-cap': 'round',
+        'line-join': 'round',
+      },
+      paint: {
+        "line-color": 'black',
+        'line-width': 3,
+      }
+    })
   }
 }
