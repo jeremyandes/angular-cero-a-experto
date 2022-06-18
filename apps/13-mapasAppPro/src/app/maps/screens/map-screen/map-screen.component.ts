@@ -15,4 +15,6 @@ export class MapScreenComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get isUserLocationReady(): boolean { return this.placesService.isUserLocationReady; }
+
 }
