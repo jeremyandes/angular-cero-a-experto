@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { PlacesService } from '../../services';
-import MapboxGL from 'mapbox-gl';
+import { Map, Popup, Marker } from 'mapbox-gl';
 
 @Component({
   selector: 'app-map-view',
@@ -17,12 +17,25 @@ export class MapViewComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     if (!this.placesService.useLocation) { throw new Error('UseLocation error'); }
 
-    const map = new MapboxGL.Map({
+    const map = new Map({
       container: this.map.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: this.placesService.useLocation,
       zoom: 9
     });
+
+    const popup = new Popup()
+      .setHTML(`
+        <div class="p-2">
+          <h6>Aquí estoy</h6>
+          <span>Estoy en este lugar del mundo</span>
+        </div>
+      `);
+
+    new Marker({ color: 'red' })
+      .setLngLat(this.placesService.useLocation)
+      .setPopup(popup)
+      .addTo(map);
   }
 
 }
