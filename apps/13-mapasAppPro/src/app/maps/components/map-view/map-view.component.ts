@@ -16,12 +16,12 @@ export class MapViewComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
-    if (!this.placesService.useLocation) { throw new Error('UseLocation error'); }
+    if (!this.placesService.userLocation) { throw new Error('UserLocation error'); }
 
     const map = new Map({
       container: this.map.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: this.placesService.useLocation,
+      center: this.placesService.userLocation,
       zoom: 9
     });
 
@@ -34,7 +34,7 @@ export class MapViewComponent implements AfterViewInit {
       `);
 
     new Marker({ color: 'red' })
-      .setLngLat(this.placesService.useLocation)
+      .setLngLat(this.placesService.userLocation)
       .setPopup(popup)
       .addTo(map);
 

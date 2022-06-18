@@ -17,7 +17,7 @@ export class BtnMyLocationComponent {
     if (!this.placesService.isUserLocationReady) { throw new Error('Error en geolocalización'); }
     if (!this.mapService.isMapReady) { throw new Error('Mapa no inicializado'); }
 
-    this.mapService.flyTo(this.placesService.useLocation!);
+    this.mapService.flyTo(this.placesService.userLocation!);
   }
 
 }
